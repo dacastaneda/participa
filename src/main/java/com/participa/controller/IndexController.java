@@ -47,7 +47,9 @@ public class IndexController implements Serializable{
         try{
             us = EJBUsuario.iniciarSesion(usuario);
             if(us != null){
-            redireccion = "prueba?faces-redirect=true";
+                
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("User", us);
+            redireccion = "logueado?faces-redirect=true";
             }else{
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Datos invalidos",""));
   

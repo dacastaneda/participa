@@ -53,9 +53,7 @@ public class Perfil implements Serializable {
     @Column(name = "estadoPerfil")
     private boolean estadoPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
-    private Collection<Perfilusuario> perfilusuarioCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
-    private Collection<Perfilaccion> perfilaccionCollection;
+    private Collection<Menunivel3> menunivel3Collection;
 
     public Perfil() {
     }
@@ -103,20 +101,12 @@ public class Perfil implements Serializable {
         this.estadoPerfil = estadoPerfil;
     }
 
-    public Collection<Perfilusuario> getPerfilusuarioCollection() {
-        return perfilusuarioCollection;
+    public Collection<Menunivel3> getMenunivel3Collection() {
+        return menunivel3Collection;
     }
 
-    public void setPerfilusuarioCollection(Collection<Perfilusuario> perfilusuarioCollection) {
-        this.perfilusuarioCollection = perfilusuarioCollection;
-    }
-
-    public Collection<Perfilaccion> getPerfilaccionCollection() {
-        return perfilaccionCollection;
-    }
-
-    public void setPerfilaccionCollection(Collection<Perfilaccion> perfilaccionCollection) {
-        this.perfilaccionCollection = perfilaccionCollection;
+    public void setMenunivel3Collection(Collection<Menunivel3> menunivel3Collection) {
+        this.menunivel3Collection = menunivel3Collection;
     }
 
     @Override

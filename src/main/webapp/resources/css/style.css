@@ -1202,3 +1202,115 @@ footer {
 
 /***************************************** FIN ESTILOS DEPENDIANDO RESOLUCION DE PANTALLA  *******************************************/
 
+
+.ui-menuitem {
+   -o-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(52, 152, 219, 0.8)), to(rgba(52, 152, 219, 1)));
+  background: -webkit-linear-gradient(top, rgba(203, 203, 242, 0.4), rgba(203, 203, 242, 0.7));
+  background: -moz-linear-gradient(top, rgba(203, 203, 242, 0.4), rgba(203, 203, 242, 0.7));
+  background: -ms-linear-gradient(top, rgba(203, 203, 242, 0.4), rgba(203, 203, 242, 0.7));
+  background: -o-linear-gradient(top, rgba(203, 203, 242, 0.4), rgba(203, 203, 242, 0.7));
+  border: 1px rgba(60,60,60,0.1) solid;
+  color: rgb(3, 15, 114) !important;
+  cursor: pointer;
+  font-weight: lighter;
+  padding: 2px 4px;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255);
+  width: 100%;
+}
+.ui-menu-list {
+     background: -webkit-gradient(linear, left top, left bottom, from(rgba(52, 152, 219, 0.8)), to(rgba(52, 152, 219, 1)));
+  background: -webkit-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -moz-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -ms-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -o-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+
+  border: 1px rgba(60,60,60,0.1) solid;
+  color: rgb(255, 255, 255) !important;
+  font-weight: lighter;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgb(3, 15, 114);
+}
+.ui-menu{
+    width: auto !important;
+}
+.ui-menuitem-link ui-corner-all{
+  -o-transition: all 0.5s ease !important;
+	-moz-transition: all 0.5s ease !important;
+	-webkit-transition: all 0.5s ease !important;
+	transition: all 0.5s ease !important;
+
+  /*combinaciones para amarillo*/
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 240, 106, 0.4)), to(rgba(242, 240, 106, 0.6)))!important;
+  background: -webkit-linear-gradient(top, rgba(242, 240, 106, 0.4), rgba(242, 240, 106, 0.6)) !important;
+  background: -moz-linear-gradient(top, rgba(242, 240, 106, 0.4), rgba(242, 240, 106, 0.6)) !important;
+  background: -ms-linear-gradient(top, rgba(242, 240, 106, 0.4), rgba(242, 240, 106, 0.6)) !important;
+  background: -o-linear-gradient(top, rgba(242, 240, 106, 0.4), rgba(242, 240, 106, 0.6)) !important;
+
+  color: rgba(3, 15, 114, 0.6) !important;
+  text-shadow: 1px 1px 0px rgb(255, 255, 255) !important;
+
+  /*combinaciones para azul*/
+/*  background: -webkit-gradient(linear, left top, left bottom, from(rgba(52, 152, 219, 0.8)), to(rgba(52, 152, 219, 1)));
+  background: -webkit-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -moz-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -ms-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  background: -o-linear-gradient(top, rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 1));
+  color: rgb(255, 255, 255) !important;
+  text-shadow: 1px 1px 1px rgb(3, 15, 114);
+*/
+  font-weight: lighter !important;
+  text-decoration: none !important;  
+    
+}
+.ui-menu .ui-menuitem-link{
+    width: 100% !important;
+}
+.ui-menu .ui-menu-list .ui-widget-header {
+    width: 100% !important;
+}
+ a {
+    color: black !important;
+    text-align: right !important;
+    left: -87 !important;
+    
+}
+.ui-widget-content{
+    
+    border: 1px #E8E9F2 solid !important;
+}
+.ui-panelgrid-cell{
+    background: #E8E9F2;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{
+    border-bottom-right-radius: 0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl{
+    border-bottom-left-radius: 0px !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr{
+    border-top-right-radius: 0px !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{
+    border-top-left-radius: 0px !important;
+}
+.ui-widget {
+  font-family: Verdana,Arial,sans-serif !important;
+  font-size: 1em !important;
+}
+.ui-menu .ui-widget-header h3{
+    padding: 0.2em 3% !important;
+    padding-left: 1.8em !important;
+}
+.ui-menu .ui-menuitem-link {
+    padding: 0.2em !important;
+}
+.ui-menu .ui-menuitem-text {
+ 
+  padding-left: 1.8em !important;
+}

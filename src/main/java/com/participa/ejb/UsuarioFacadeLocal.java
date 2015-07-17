@@ -32,4 +32,6 @@ public interface UsuarioFacadeLocal {
     
     Usuario iniciarSesion(Usuario us);
     
+    
+    
 }

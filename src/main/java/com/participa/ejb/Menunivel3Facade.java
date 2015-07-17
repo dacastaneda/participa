@@ -28,4 +28,5 @@ public class Menunivel3Facade extends AbstractFacade<Menunivel3> implements Menu
         super(Menunivel3.class);
     }
     
+    
 }

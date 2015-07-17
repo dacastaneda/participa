@@ -6,10 +6,8 @@
 package com.participa.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -107,7 +103,7 @@ public class Usuario implements Serializable {
     private String nombreUsuario;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 45)
     @Column(name = "claveUsuario")
     private String claveUsuario;
     @Basic(optional = false)
@@ -115,12 +111,6 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "rol")
     private String rol;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private Estudiante estudiante;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private Docente docente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private Collection<Perfilusuario> perfilusuarioCollection;
 
     public Usuario() {
     }
@@ -254,30 +244,6 @@ public class Usuario implements Serializable {
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Docente getDocente() {
-        return docente;
-    }
-
-    public void setDocente(Docente docente) {
-        this.docente = docente;
-    }
-
-    public Collection<Perfilusuario> getPerfilusuarioCollection() {
-        return perfilusuarioCollection;
-    }
-
-    public void setPerfilusuarioCollection(Collection<Perfilusuario> perfilusuarioCollection) {
-        this.perfilusuarioCollection = perfilusuarioCollection;
     }
 
     @Override

@@ -8,7 +8,6 @@ package com.participa.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +35,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Menunivel3.findByDescripcion", query = "SELECT m FROM Menunivel3 m WHERE m.descripcion = :descripcion"),
     @NamedQuery(name = "Menunivel3.findByUrl", query = "SELECT m FROM Menunivel3 m WHERE m.url = :url"),
     @NamedQuery(name = "Menunivel3.findByEstadoMenuNivel3", query = "SELECT m FROM Menunivel3 m WHERE m.estadoMenuNivel3 = :estadoMenuNivel3"),
-    @NamedQuery(name = "Menunivel3.findByParent", query = "SELECT m FROM Menunivel3 m WHERE m.parent = :parent")})
+    @NamedQuery(name = "Menunivel3.findByRol", query = "SELECT m FROM Menunivel3 m WHERE m.rol = :rol"),
+    @NamedQuery(name = "Menunivel3.findByTipo", query = "SELECT m FROM Menunivel3 m WHERE m.tipo = :tipo")})
 public class Menunivel3 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,13 +65,22 @@ public class Menunivel3 implements Serializable {
     private boolean estadoMenuNivel3;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "parent")
-    private boolean parent;
-    @JoinColumn(name = "idMenuNivel2", referencedColumnName = "idMenuNivel2")
+    @Size(min = 1, max = 15)
+    @Column(name = "rol")
+    private String rol;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2)
+    @Column(name = "tipo")
+    private String tipo;
+    @OneToMany(mappedBy = "submenu")
+    private Collection<Menunivel3> menunivel3Collection;
+    @JoinColumn(name = "submenu", referencedColumnName = "idMenuNivel3")
+    @ManyToOne
+    private Menunivel3 submenu;
+    @JoinColumn(name = "idPerfil", referencedColumnName = "idPerfil")
     @ManyToOne(optional = false)
-    private Menunivel2 idMenuNivel2;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMenuNivel3")
-    private Collection<Perfilaccion> perfilaccionCollection;
+    private Perfil idPerfil;
 
     public Menunivel3() {
     }
@@ -80,13 +89,14 @@ public class Menunivel3 implements Serializable {
         this.idMenuNivel3 = idMenuNivel3;
     }
 
-    public Menunivel3(Integer idMenuNivel3, String nombreMenuNivel3, String descripcion, String url, boolean estadoMenuNivel3, boolean parent) {
+    public Menunivel3(Integer idMenuNivel3, String nombreMenuNivel3, String descripcion, String url, boolean estadoMenuNivel3, String rol, String tipo) {
         this.idMenuNivel3 = idMenuNivel3;
         this.nombreMenuNivel3 = nombreMenuNivel3;
         this.descripcion = descripcion;
         this.url = url;
         this.estadoMenuNivel3 = estadoMenuNivel3;
-        this.parent = parent;
+        this.rol = rol;
+        this.tipo = tipo;
     }
 
     public Integer getIdMenuNivel3() {
@@ -129,28 +139,44 @@ public class Menunivel3 implements Serializable {
         this.estadoMenuNivel3 = estadoMenuNivel3;
     }
 
-    public boolean getParent() {
-        return parent;
+    public String getRol() {
+        return rol;
     }
 
-    public void setParent(boolean parent) {
-        this.parent = parent;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public Menunivel2 getIdMenuNivel2() {
-        return idMenuNivel2;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setIdMenuNivel2(Menunivel2 idMenuNivel2) {
-        this.idMenuNivel2 = idMenuNivel2;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public Collection<Perfilaccion> getPerfilaccionCollection() {
-        return perfilaccionCollection;
+    public Collection<Menunivel3> getMenunivel3Collection() {
+        return menunivel3Collection;
     }
 
-    public void setPerfilaccionCollection(Collection<Perfilaccion> perfilaccionCollection) {
-        this.perfilaccionCollection = perfilaccionCollection;
+    public void setMenunivel3Collection(Collection<Menunivel3> menunivel3Collection) {
+        this.menunivel3Collection = menunivel3Collection;
+    }
+
+    public Menunivel3 getSubmenu() {
+        return submenu;
+    }
+
+    public void setSubmenu(Menunivel3 submenu) {
+        this.submenu = submenu;
+    }
+
+    public Perfil getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(Perfil idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
     @Override
