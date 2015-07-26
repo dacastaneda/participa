@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+               Consultar Usuarios
+            </ui:define>
+
+            <ui:define name="nav">
+                nav
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Consultar Usuario</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se permite realizar la actualización de los usuarios de los usuarios.</p>
+                                    <div> 
+
+                                        <h:form id="frm">
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+
+                                            <p:dataTable   id="tbl" var="usuario" value="#{consultarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
+                                                           paginator="true" rows="8" paginatorPosition="bottom"
+                                                           paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                                <p:column headerText="Id" id="idPersona" style="width: 5%" >
+                                                    <h:outputText value="#{usuario.idPersona}" />
+                                                </p:column>
+                                                <p:column  headerText="Documento de identidad"  filterBy="#{usuario.documentoIdentidad}">
+                                                    <h:outputText value="#{usuario.documentoIdentidad}" />
+                                                </p:column>
+
+                                                <p:column headerText="Primer apellido"  filterBy="#{usuario.primerApellido}" filterMatchMode="contains" >
+                                                    <h:outputText value="#{usuario.primerApellido}" >
+
+                                                    </h:outputText>
+                                                </p:column>
+                                                <p:column headerText="Primer nombre"  filterBy="#{usuario.primerNombre}" filterMatchMode="contains" >
+                                                    <h:outputText value="#{usuario.primerNombre}" >
+
+                                                    </h:outputText>
+
+                                                </p:column>
+                                                <p:column headerText="Nombre usuario"  filterBy="#{usuario.nombreUsuario}" filterMatchMode="contains" >
+                                                    <h:outputText value="#{usuario.nombreUsuario}" >
+
+                                                    </h:outputText>
+
+                                                </p:column>
+                                                <p:column headerText="Consultar"  >
+                                                    <div class="form_button_box" >
+                                                            <p class=""></p>
+                                                            <p:commandButton  style="width: 100%" value="Consultar" icon="ui-icon-zoomin" actionListener="#{consultarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                     </div>
+                                                </p:column>   
+                                            </p:dataTable>
+
+
+                                        </h:form>
+
+                                        <p:dialog header="Datos a consultar" widgetVar="wdlgDatos" id="dlgDatos">
+                                            <h:form>
+                                                
+                                                <p:panelGrid columns="4">
+
+                                                    <p:column>
+                                                        <p:outputLabel for="txtDocumento" class="form_field_1" value="Documento de Identidad:"  style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtDocumento" value="#{consultarUsuariosPerfilesController.usuario.documentoIdentidad}" /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtTipoDocumento" value="Tipo Documento: "  style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtTipoDocumento" value="#{consultarUsuariosPerfilesController.usuario.tipoDocumento}" >
+                                                            
+                                                        </p:outputLabel>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtPrimerApellido" value="Primer Apellido:"   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtPrimerApellido"  value="#{consultarUsuariosPerfilesController.usuario.primerApellido}"/> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtSegundoApellido" value="Segundo Apellido:"   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtSegundoApellido"  value="#{consultarUsuariosPerfilesController.usuario.segundoApellido}" /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtPrimerNombre" value="Primer Nombre:"  style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtPrimerNombre"  value="#{consultarUsuariosPerfilesController.usuario.primerNombre}" /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtSegundoNombre" value="Segundo Nombre:"   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtSegundoNombre"  value="#{consultarUsuariosPerfilesController.usuario.segundoNombre}" /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtTelefono" value="Telefono: "   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtTelefono"  value="#{consultarUsuariosPerfilesController.usuario.telefonoPersona}"  /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtDireccionPersona" value="Direccion Persona: "   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtDireccionPersona"  value="#{consultarUsuariosPerfilesController.usuario.direccionPersona}" /> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento: "   style="width: 100%">
+                                                        
+                                                        </p:outputLabel>
+                                                        <p:outputLabel id="txtFechaNacimiento"  value="#{consultarUsuariosPerfilesController.usuario.fechaNacimiento}"><f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime></p:outputLabel>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtEmail" value="email:"   style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="txtEmail"  value="#{consultarUsuariosPerfilesController.usuario.emailPersona}" >
+                                                            
+                                                        </p:outputLabel>
+                                                    </p:column>
+
+                                                    <p:column>
+                                                        <p:outputLabel for="selRol" value="Rol:"  style="width: 100%"></p:outputLabel>
+
+                                                        <p:outputLabel id="selRol" value="#{consultarUsuariosPerfilesController.usuario.rol}"  style="width: 80%">
+                                                            
+                                                        </p:outputLabel>
+
+                                                    </p:column>
+                                                    <p:column>
+                                                        
+                                                        <div class="form_button_box">
+                                                            <p class=""></p>
+                                                            <p:commandButton value="Salir"  style="width: 75%" oncomplete="PF('wdlgDatos').hide();" immediate="true" >
+
+                                                            </p:commandButton>
+                                                        </div>
+                                                    </p:column>
+                                                </p:panelGrid>
+                                            </h:form>
+                                        </p:dialog>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

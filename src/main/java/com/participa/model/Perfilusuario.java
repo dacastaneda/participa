@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,9 +26,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "perfilusuario")
+@NamedStoredProcedureQuery(name = "eliminarPerfilUsuario", procedureName = "eliminarPerfilUsuario",parameters = { @StoredProcedureParameter(mode = ParameterMode.IN, name = "idPersona",type = Integer.class)})
 @NamedQueries({
     @NamedQuery(name = "Perfilusuario.findAll", query = "SELECT p FROM Perfilusuario p"),
     @NamedQuery(name = "Perfilusuario.findByIdPerfilUsuario", query = "SELECT p FROM Perfilusuario p WHERE p.idPerfilUsuario = :idPerfilUsuario"),
+    @NamedQuery(name = "Perfilusuario.findByIdPersona", query = "SELECT p FROM Perfilusuario p WHERE p.idPersona = :idPersona"),
     @NamedQuery(name = "Perfilusuario.findByEstadoPerfilUsuario", query = "SELECT p FROM Perfilusuario p WHERE p.estadoPerfilUsuario = :estadoPerfilUsuario")})
 public class Perfilusuario implements Serializable {
     private static final long serialVersionUID = 1L;

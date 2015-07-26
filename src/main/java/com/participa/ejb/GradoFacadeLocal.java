@@ -8,6 +8,7 @@ package com.participa.ejb;
 import com.participa.model.Grado;
 import java.util.List;
 import javax.ejb.Local;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -29,5 +30,7 @@ public interface GradoFacadeLocal {
     List<Grado> findRange(int[] range);
 
     int count();
+    
+    List<SelectItem> listarGrado();
     
 }

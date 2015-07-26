@@ -5,7 +5,14 @@
  */
 package com.participa.ejb;
 
+import com.participa.model.Asignaturagrado;
 import com.participa.model.Componente;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +34,6 @@ public class ComponenteFacade extends AbstractFacade<Componente> implements Comp
     public ComponenteFacade() {
         super(Componente.class);
     }
+    
     
 }

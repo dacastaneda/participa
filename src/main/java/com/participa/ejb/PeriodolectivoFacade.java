@@ -6,9 +6,13 @@
 package com.participa.ejb;
 
 import com.participa.model.Periodolectivo;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,6 +22,9 @@ import javax.persistence.PersistenceContext;
 public class PeriodolectivoFacade extends AbstractFacade<Periodolectivo> implements PeriodolectivoFacadeLocal {
     @PersistenceContext(unitName = "participaPU")
     private EntityManager em;
+    
+    
+    
 
     @Override
     protected EntityManager getEntityManager() {
@@ -28,4 +35,17 @@ public class PeriodolectivoFacade extends AbstractFacade<Periodolectivo> impleme
         super(Periodolectivo.class);
     }
     
+   
+
+    @Override
+    public List<SelectItem> listarPeriodoLectivo() {
+        List<SelectItem> periodoLectivo = new ArrayList<>();
+       List<Periodolectivo> items = em.createNamedQuery("Periodolectivo.findAll", Periodolectivo.class).getResultList();
+        periodoLectivo.clear();
+        for (Periodolectivo item : items) {
+            SelectItem si = new SelectItem(item.getAno());
+            periodoLectivo.add(si);
+        }
+        return periodoLectivo;
+    }
 }

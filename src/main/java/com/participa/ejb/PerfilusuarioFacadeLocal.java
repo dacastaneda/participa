@@ -6,8 +6,10 @@
 package com.participa.ejb;
 
 import com.participa.model.Perfilusuario;
+import com.participa.model.Usuario;
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -29,5 +31,9 @@ public interface PerfilusuarioFacadeLocal {
     List<Perfilusuario> findRange(int[] range);
 
     int count();
+    
+    void invocarProcedimiento(EntityManager em, int idPersona);
+    
+    void invocarProcedure(int idPersona);
     
 }

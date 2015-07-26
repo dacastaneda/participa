@@ -6,7 +6,10 @@
 package com.participa.ejb;
 
 import com.participa.model.Asignatura;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,4 +31,16 @@ public class AsignaturaFacade extends AbstractFacade<Asignatura> implements Asig
         super(Asignatura.class);
     }
     
+    @Override
+    public List<SelectItem> listarAsignatura() {
+        List<SelectItem> asignaturas = new ArrayList<>();
+       List<Asignatura> items = em.createNamedQuery("Asignatura.findAll", Asignatura.class)
+                .getResultList(); 
+       asignaturas.clear();
+        for (Asignatura item : items) {
+            SelectItem si = new SelectItem(item.getNombreAsignatura());
+            asignaturas.add(si);
+        }
+        return asignaturas;
+    }
 }

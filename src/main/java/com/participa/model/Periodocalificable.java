@@ -29,6 +29,7 @@ import javax.validation.constraints.Size;
 @Table(name = "periodocalificable")
 @NamedQueries({
     @NamedQuery(name = "Periodocalificable.findAll", query = "SELECT p FROM Periodocalificable p"),
+    @NamedQuery(name = "Periodocalificable.findByIdPeriodoLectivo", query = "SELECT p FROM Periodocalificable p WHERE p.idPeriodoLectivo = :idPeriodoLectivo"),
     @NamedQuery(name = "Periodocalificable.findByIdPeriodoCalificable", query = "SELECT p FROM Periodocalificable p WHERE p.idPeriodoCalificable = :idPeriodoCalificable"),
     @NamedQuery(name = "Periodocalificable.findByNombrePeriodoCalificable", query = "SELECT p FROM Periodocalificable p WHERE p.nombrePeriodoCalificable = :nombrePeriodoCalificable"),
     @NamedQuery(name = "Periodocalificable.findByEstadoPeriodoCalificable", query = "SELECT p FROM Periodocalificable p WHERE p.estadoPeriodoCalificable = :estadoPeriodoCalificable")})

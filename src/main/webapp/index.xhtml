@@ -45,11 +45,13 @@
                         
                         <p:password id="pass" placeholder="contraseña" value="#{indexController.usuario.claveUsuario}" required="true" requiredMessage="Campo obligatorio"></p:password>
                         <p:message for="pass" display="text"></p:message>
-                        
-                        <p:commandButton id="btnLogin" icon="ui-icon-key" action="#{indexController.iniciarSesion()}" class="form_button_box form_field form_field_1" style="text-align: center;" value="Ingresar"  update="grid, mensaje"></p:commandButton>
+                       
                     </p:panelGrid>
                     
-                
+                 <div class="form_button_box">
+                                        <p class=""></p>
+                        <p:commandButton  id="btnLogin" icon="ui-icon-key" action="#{indexController.iniciarSesion()}" class="form_button_box form_field form_field_1" style="text-align: center; width: 80%" value="Ingresar"  update="grid, mensaje"></p:commandButton>
+                        </div>
                                 </h:form>
                             </div>
                         </form>

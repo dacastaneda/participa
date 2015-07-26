@@ -78,7 +78,7 @@ public class Usuario implements Serializable {
     private String segundoNombre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 12)
     @Column(name = "telefonoPersona")
     private String telefonoPersona;
     @Basic(optional = false)

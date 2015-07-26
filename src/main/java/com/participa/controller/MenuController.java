@@ -85,6 +85,7 @@ public class MenuController implements Serializable{
                     if (submenu != null) {
                         if (submenu.getIdMenuNivel3() == m.getIdMenuNivel3() ) {
                             DefaultMenuItem item = new DefaultMenuItem(i.getNombreMenuNivel3());
+                            item.setUrl(i.getUrl());
                         primerSubMenu.addElement(item);
                         }
                     }
@@ -95,6 +96,7 @@ public class MenuController implements Serializable{
                 if (m.getSubmenu()== null && m.getRol().equals(us.getRol()) ) {
                     
                    DefaultMenuItem item = new DefaultMenuItem(m.getNombreMenuNivel3());
+                   item.setUrl(m.getUrl());
                    
                 model.addElement(item); 
                 }

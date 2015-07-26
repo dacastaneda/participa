@@ -8,6 +8,7 @@ package com.participa.ejb;
 import com.participa.model.Periodocalificable;
 import java.util.List;
 import javax.ejb.Local;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -29,5 +30,9 @@ public interface PeriodocalificableFacadeLocal {
     List<Periodocalificable> findRange(int[] range);
 
     int count();
+    
+    List<SelectItem> listarPeriodoCalificable();
+    
+    
     
 }

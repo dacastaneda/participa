@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Registrar usuarios
+            </ui:define>
+
+            <ui:define name="nav">
+                nav
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Registrar Usuario</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza en registro de todos los usuarios que hacen parte del sistema.</p>
+                                    <div> 
+
+                                        <h:form>
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+                                            
+                                            <p:panelGrid id="panel" columns="3" style="width: 100%">
+                                                
+                                                <p:column>
+                                                <p:outputLabel class="form_field_1" value="#{registrarUsuariosPerfilesController.usuario.idPersona}"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                </p:column>
+                                                <p:column>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtDocumento" class="form_field_1" value="Documento de Identidad:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtDocumento" value="#{registrarUsuariosPerfilesController.usuario.documentoIdentidad}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtDocumento"     showDetail="true" showSummary="false"/>
+                                                </p:column> 
+                                                <p:column>
+                                                <p:outputLabel for="txtTipoDocumento" value="Tipo Documento:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    
+                                                    <p:selectOneMenu  style="width: 56%" id="txtTipoDocumento" value="#{registrarUsuariosPerfilesController.usuario.tipoDocumento}" required="true" requiredMessage="Campo Obligatorio">
+                                                        <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
+                                                        <f:selectItem itemLabel="CC" itemValue="CC"/>
+                                                        <f:selectItem itemLabel="CE" itemValue="CE"/>
+                                                        <f:selectItem itemLabel="TI" itemValue="TI"/>
+                                                    </p:selectOneMenu>
+                                                    
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtTipoDocumento"   showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtPrimerApellido" value="Primer Apellido:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtPrimerApellido"  value="#{registrarUsuariosPerfilesController.usuario.primerApellido}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtPrimerApellido"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtSegundoApellido" value="Segundo Apellido:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtSegundoApellido"  value="#{registrarUsuariosPerfilesController.usuario.segundoApellido}" /> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtSegundoApellido"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtPrimerNombre" value="Primer Nombre:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtPrimerNombre"  value="#{registrarUsuariosPerfilesController.usuario.primerNombre}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtPrimerNombre"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtSegundoNombre" value="Segundo Nombre:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtSegundoNombre"  value="#{registrarUsuariosPerfilesController.usuario.segundoNombre}" /> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtSegundoNombre"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtTelefono" value="Telefono"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtTelefono"  value="#{registrarUsuariosPerfilesController.usuario.telefonoPersona}"  required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtTelefono"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtDireccionPersona" value="Direccion Persona:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtDireccionPersona"  value="#{registrarUsuariosPerfilesController.usuario.direccionPersona}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtDireccionPersona"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:calendar id="txtFechaNacimiento"  value="#{registrarUsuariosPerfilesController.usuario.fechaNacimiento}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtFechaNacimiento"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtEmail" value="email:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtEmail"  value="#{registrarUsuariosPerfilesController.usuario.emailPersona}" required="true" requiredMessage="Campo Obligatorio" validatorMessage="Formato correo inválido">
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
+                                                </f:validateRegex>
+                                                </p:inputText>
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtEmail"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtNombreUsuario" value="Nombre Usuario:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtNombreUsuario"  value="#{registrarUsuariosPerfilesController.usuario.nombreUsuario}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtNombreUsuario"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtClaveUsuario" value="Clave Usuario:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:password id="txtClaveUsuario"  value="#{registrarUsuariosPerfilesController.usuario.claveUsuario}" match="pwd2" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtClaveUsuario"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                 <p:column>
+                                                <p:outputLabel for="pwd2" value="Confirmar Clave Usuario:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:password id="pwd2"  value="#{registrarUsuariosPerfilesController.usuario.claveUsuario}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="pwd2"     showDetail="true" showSummary="false"/>
+                                                </p:column>                   
+                                                <p:column>
+                                                <p:outputLabel for="selRol" value="Rol:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    
+                                                    <p:selectOneMenu style="width: 56%" id="selRol" value="#{registrarUsuariosPerfilesController.usuario.rol}" required="true" requiredMessage="Campo Obligatorio">
+                                                        <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
+                                                        <f:selectItem itemLabel="Coordinador" itemValue="coordinador"/>
+                                                        <f:selectItem itemLabel="Docente" itemValue="docente"/>
+                                                        <f:selectItem itemLabel="Estudiante" itemValue="estudiante"/>
+                                                    </p:selectOneMenu>
+                                                    
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="selRol"   showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                            </p:panelGrid>
+                                            <br/>
+                                    <div class="form_button_box">
+                                        <p class=""></p>
+                                        <p:commandButton value="Registrar" update="panel" action="#{registrarUsuariosPerfilesController.registrarUsuario()}">
+                                                
+                                            </p:commandButton>
+                                    </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

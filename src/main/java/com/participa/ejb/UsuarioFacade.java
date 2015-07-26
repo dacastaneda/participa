@@ -6,8 +6,11 @@
 package com.participa.ejb;
 
 import com.participa.model.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,6 +23,7 @@ import javax.persistence.Query;
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
     @PersistenceContext(unitName = "participaPU")
     private EntityManager em;
+    
 
     @Override
     protected EntityManager getEntityManager() {
@@ -50,5 +54,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return usuario;
     }
     
+    
+    
+     
+   
+
     
 }
