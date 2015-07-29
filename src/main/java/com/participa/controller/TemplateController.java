@@ -7,6 +7,7 @@ package com.participa.controller;
 
 import com.participa.model.Usuario;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -16,7 +17,7 @@ import javax.inject.Named;
  * @author dacastanedah
  */
 @Named
-@ViewScoped
+@SessionScoped
 public class TemplateController implements Serializable{
     
     public void verificarSesion(){

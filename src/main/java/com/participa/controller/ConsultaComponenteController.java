@@ -18,14 +18,33 @@ import com.participa.model.Componente;
 import com.participa.model.Grado;
 import com.participa.model.Periodocalificable;
 import com.participa.model.Periodolectivo;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
 
 /**
  *
@@ -47,6 +66,9 @@ public class ConsultaComponenteController implements Serializable{
     private Asignatura asignatura;
     private Grado grado;
     
+    private String asignaturas;
+    private String grados;
+    
     private List<SelectItem> asignaturaList;
     private List<SelectItem> gradoList;
     
@@ -64,12 +86,28 @@ public class ConsultaComponenteController implements Serializable{
         
    }
 
+    public String getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(String asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+
+    public String getGrados() {
+        return grados;
+    }
+
+    public void setGrados(String grados) {
+        this.grados = grados;
+    }
+
     
 
    
    
     public List<Componente> getComponenteList() {
-        componenteList = this.listarComponentes();
+        
         return componenteList;
     }
 
@@ -86,7 +124,7 @@ public class ConsultaComponenteController implements Serializable{
     }
 
     public List<SelectItem> getGradoList() {
-        gradoList = gradoEJB.listarGrado();
+        
         return gradoList;
     }
 
@@ -105,7 +143,7 @@ public class ConsultaComponenteController implements Serializable{
     }
 
     public List<SelectItem> getAsignaturaList() {
-        asignaturaList = asignaturaEJB.listarAsignatura();
+        
         return asignaturaList;
     }
 
@@ -126,8 +164,94 @@ public class ConsultaComponenteController implements Serializable{
        
    }
     
-    
+     public void consultaComponente(){
+         
+                 this.componenteList =  componenteEJB.invocarProcedure(grados,asignaturas);
+       
+   }
         
-        
+   public void exportarPdf() throws JRException, IOException{
+       Map<String, Object> parametros = new HashMap<>();
+       parametros.put("idGrado", this.grados);
+       parametros.put("idAsignatura", this.asignaturas);
+       
+       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.pdf");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            JasperExportManager.exportReportToPdfStream(jp, stream);
+            
+            stream.flush();
+            stream.close();
+        }
+       FacesContext.getCurrentInstance().responseComplete();
+   }
+   
+   public void exportarExcel() throws JRException, IOException{
+       Map<String, Object> parametros = new HashMap<>();
+       parametros.put("idGrado", this.grados);
+       parametros.put("idAsignatura", this.asignaturas);
+       
+       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.xls");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            
+            JRXlsExporter exporter = new JRXlsExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
+            exporter.exportReport();
+            
+            stream.flush();
+            stream.close();
+        }
+       FacesContext.getCurrentInstance().responseComplete();
+   }
     
+   
+   public void exportarPpt() throws JRException, IOException{
+       Map<String, Object> parametros = new HashMap<>();
+       parametros.put("idGrado", this.grados);
+       parametros.put("idAsignatura", this.asignaturas);
+       
+       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.ppt");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            
+            JRPptxExporter exporter = new JRPptxExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
+            exporter.exportReport();
+            
+            stream.flush();
+            stream.close();
+        }
+       FacesContext.getCurrentInstance().responseComplete();
+   }
+   
+   public void exportarDoc() throws JRException, IOException{
+       Map<String, Object> parametros = new HashMap<>();
+       parametros.put("idGrado", this.grados);
+       parametros.put("idAsignatura", this.asignaturas);
+       
+       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.doc");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            
+            JRDocxExporter exporter = new JRDocxExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
+            exporter.exportReport();
+            
+            stream.flush();
+            stream.close();
+        }
+       FacesContext.getCurrentInstance().responseComplete();
+   }
 }

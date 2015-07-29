@@ -8,6 +8,7 @@ package com.participa.ejb;
 import com.participa.model.Componente;
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -29,5 +30,9 @@ public interface ComponenteFacadeLocal {
     List<Componente> findRange(int[] range);
 
     int count();
+    
+    List<Componente> invocarProcedimiento(EntityManager em, String idGrado, String idAsignatura);
+    
+    List<Componente> invocarProcedure(String idGrado, String idAsignatura);
     
 }

@@ -16,7 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,6 +30,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "componente")
+@NamedStoredProcedureQuery(name = "consultarComponente", procedureName = "consultarComponente",parameters = { @StoredProcedureParameter(mode = ParameterMode.IN, name = "idGrado",type = String.class), @StoredProcedureParameter(mode = ParameterMode.IN, name = "idAsignatura",type = String.class) })
 @NamedQueries({
     @NamedQuery(name = "Componente.findAll", query = "SELECT c FROM Componente c"),
     @NamedQuery(name = "Componente.findByIdComponente", query = "SELECT c FROM Componente c WHERE c.idComponente = :idComponente"),

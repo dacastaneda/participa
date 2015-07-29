@@ -90,7 +90,7 @@ public class EliminarUsuariosPerfilesController implements Serializable {
             usuarioEJB.remove(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación éxitosa: ", "Se elimino el usuario "+usuario.getNombreUsuario()));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operación sin éxito ", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario no se puede eliminar, no esta permitido. ", ""));
         }
 
     }
