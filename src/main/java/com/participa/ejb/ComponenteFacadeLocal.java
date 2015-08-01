@@ -17,6 +17,12 @@ import javax.persistence.EntityManager;
 @Local
 public interface ComponenteFacadeLocal {
 
+
+    
+    
+    
+    
+    
     void create(Componente componente);
 
     void edit(Componente componente);
