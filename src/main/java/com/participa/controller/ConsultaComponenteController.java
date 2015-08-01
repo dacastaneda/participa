@@ -143,7 +143,7 @@ public class ConsultaComponenteController implements Serializable{
     }
 
     public List<SelectItem> getAsignaturaList() {
-        
+       
         return asignaturaList;
     }
 
