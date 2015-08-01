@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="nav">
+                nav
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Ingresar Logro</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza el ingreso de logros del año lectivo.</p>
+                                    <h:form>
+                                        <p:messages autoUpdate="true" id="mensaje" showDetail="true" showSummary="false"></p:messages>
+
+
+
+
+
+                                        <div class="form_field form_field_2" >		
+                                            <label for="slctGrado"><h3>Grado<sup class=""></sup></h3></label>	
+                                            <h:selectOneMenu value="#{registrarLogroController.gradoV}">
+                                                <f:selectItem   itemValue="" itemLabel="Seleccione un grado"/>
+                                                <f:selectItems  value="#{registrarLogroController.gradoList}" />
+
+                                            </h:selectOneMenu>	
+                                        </div>
+
+                                        <div class="form_field form_field_2" >		
+                                            <label for="slctAsignatura"><h3>Asignatura<sup class=""></sup></h3></label>	
+                                            <h:selectOneMenu value="#{registrarLogroController.asignaturaV}">
+                                                <f:selectItem   itemValue="" itemLabel="Seleccione una asignatura"/>
+                                                <f:selectItems   value="#{registrarLogroController.asignaturaList}"/>
+
+                                            </h:selectOneMenu>	
+                                        </div>	
+
+                                        <div class="form_field form_field_3" >		
+                                            <label for="slctComponente"><h3>Componente<sup class=""></sup></h3></label>	
+                                            <h:selectOneMenu value="#{registrarLogroController.componenteV}" >
+                                            <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione no. Componente" />
+                                            <f:selectItem  itemValue="C1"  itemLabel="1"/>
+                                            <f:selectItem  itemValue="C2"  itemLabel="2"/>
+                                            <f:selectItem  itemValue="C3"  itemLabel="3"/>
+                                            <f:selectItem  itemValue="C4"  itemLabel="4"/>
+                                            <f:selectItem  itemValue="C5"  itemLabel="5"/>
+                                            <f:selectItem  itemValue="C6"  itemLabel="6"/>
+                                            <f:selectItem  itemValue="C7"  itemLabel="7"/>
+                                            <f:selectItem  itemValue="C8"  itemLabel="8"/>
+                                            <f:selectItem  itemValue="C9"  itemLabel="9"/>
+                                            <f:selectItem  itemValue="C10"  itemLabel="10"/>
+                                            <f:selectItem  itemValue="C11"  itemLabel="11"/>
+                                            <f:selectItem  itemValue="C12"  itemLabel="12"/>
+
+                                            </h:selectOneMenu>	
+                                        </div>
+                                        
+                                         
+
+                                        <div class="form_field form_field_3" >		
+                                            <label for="slctPeriodo"><h3>Periodo<sup class=""></sup></h3></label>	
+                                            <h:selectOneMenu  value="#{registrarLogroController.periodoComponenteV}">
+                                                <f:selectItem   itemValue="" itemLabel="Seleccione un periodo"/>
+                                                <f:selectItems   value="#{registrarLogroController.periodocalificableList}"/>
+
+                                            </h:selectOneMenu>	
+                                        </div>
+                                        
+                                        <div class="form_field form_field_4" >		
+                                            <label for="slctLogro"><h3>Logro<sup class=""></sup></h3></label>	
+                                            <h:selectOneMenu value="#{registrarLogroController.logroV}" >
+                                            <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione no. Logro" />
+                                            <f:selectItem  itemValue="L1"  itemLabel="Logro 1"/>
+                                            <f:selectItem  itemValue="L2"  itemLabel="Logro 2"/>
+                                            <f:selectItem  itemValue="L3"  itemLabel="Logro 3"/>
+                                            <f:selectItem  itemValue="L4"  itemLabel="Logro 4"/>
+                                            <f:selectItem  itemValue="L5"  itemLabel="Logro 5"/>
+                                            </h:selectOneMenu>	
+                                        </div>
+                                        <br/> 
+
+                                        <p:outputLabel for="txtNombreLogro" value="Descripcion logro:" style="width: 100%"></p:outputLabel>
+                                        <p:inputTextarea  cols="100"  counterTemplate="{0} caracteres restantes." counter="txtNombreLogro" maxlength="500" autoResize="false" />
+                                        <p:outputLabel id="txtNombreLogro" value="Campos permitidos 500" ></p:outputLabel>
+
+                                         <br/>
+                                    <div class="form_button_box">
+                                        <p class=""></p>
+                                        <p:commandButton value="Ingresar"   >
+                                                
+                                            </p:commandButton>
+                                    </div>
+
+                                    </h:form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

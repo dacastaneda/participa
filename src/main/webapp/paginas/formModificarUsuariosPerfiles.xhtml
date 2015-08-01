@@ -78,14 +78,14 @@
                                                 <p:panelGrid columns="4">
 
                                                     <p:column>
-                                                        <p:outputLabel for="txtDocumento" class="form_field_1" value="Documento de Identidad:"></p:outputLabel>
+                                                        <p:outputLabel for="txtDocumento" class="form_field_1" value="Documento de Identidad:" style="width: 100%"></p:outputLabel>
 
                                                         <h:inputText id="txtDocumento" value="#{modificarUsuariosPerfilesController.usuario.documentoIdentidad}" /> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtTipoDocumento" value="Tipo Documento:"></p:outputLabel>
+                                                        <p:outputLabel for="txtTipoDocumento" value="Tipo Documento:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:selectOneMenu id="txtTipoDocumento" value="#{modificarUsuariosPerfilesController.usuario.tipoDocumento}" required="true" requiredMessage="Campo Obligatorio">
+                                                        <p:selectOneMenu id="txtTipoDocumento" value="#{modificarUsuariosPerfilesController.usuario.tipoDocumento}" required="true" requiredMessage="Campo Obligatorio" style="width: 80%">
                                                             <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
                                                             <f:selectItem itemLabel="CC" itemValue="CC"/>
                                                             <f:selectItem itemLabel="CE" itemValue="CE"/>
@@ -93,42 +93,42 @@
                                                         </p:selectOneMenu>
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtPrimerApellido" value="Primer Apellido:"></p:outputLabel>
+                                                        <p:outputLabel for="txtPrimerApellido" value="Primer Apellido:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtPrimerApellido"  value="#{modificarUsuariosPerfilesController.usuario.primerApellido}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtSegundoApellido" value="Segundo Apellido:"></p:outputLabel>
+                                                        <p:outputLabel for="txtSegundoApellido" value="Segundo Apellido:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtSegundoApellido"  value="#{modificarUsuariosPerfilesController.usuario.segundoApellido}" /> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtPrimerNombre" value="Primer Nombre:"></p:outputLabel>
+                                                        <p:outputLabel for="txtPrimerNombre" value="Primer Nombre:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtPrimerNombre"  value="#{modificarUsuariosPerfilesController.usuario.primerNombre}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtSegundoNombre" value="Segundo Nombre:"></p:outputLabel>
+                                                        <p:outputLabel for="txtSegundoNombre" value="Segundo Nombre:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtSegundoNombre"  value="#{modificarUsuariosPerfilesController.usuario.segundoNombre}" /> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtTelefono" value="Telefono"></p:outputLabel>
+                                                        <p:outputLabel for="txtTelefono" value="Telefono" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtTelefono"  value="#{modificarUsuariosPerfilesController.usuario.telefonoPersona}"  required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtDireccionPersona" value="Direccion Persona:"></p:outputLabel>
+                                                        <p:outputLabel for="txtDireccionPersona" value="Direccion Persona:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtDireccionPersona"  value="#{modificarUsuariosPerfilesController.usuario.direccionPersona}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento:"></p:outputLabel>
+                                                        <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento:" style="width: 100%"></p:outputLabel>
 
                                                         <p:calendar id="txtFechaNacimiento"  value="#{modificarUsuariosPerfilesController.usuario.fechaNacimiento}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
-                                                        <p:outputLabel for="txtEmail" value="email:"></p:outputLabel>
+                                                        <p:outputLabel for="txtEmail" value="email:" style="width: 100%"></p:outputLabel>
 
                                                         <p:inputText id="txtEmail"  value="#{modificarUsuariosPerfilesController.usuario.emailPersona}" required="true" requiredMessage="Campo Obligatorio" validatorMessage="Formato correo inválido">
                                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
@@ -137,7 +137,7 @@
                                                     </p:column>
 
                                                     <p:column>
-                                                        <p:outputLabel for="selRol" value="Rol:" style="width: 80%"></p:outputLabel>
+                                                        <p:outputLabel for="selRol" value="Rol:" style="width: 100%"></p:outputLabel>
 
                                                         <p:selectOneMenu id="selRol" value="#{modificarUsuariosPerfilesController.usuario.rol}" required="true" requiredMessage="Campo Obligatorio" style="width: 80%">
                                                             <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
