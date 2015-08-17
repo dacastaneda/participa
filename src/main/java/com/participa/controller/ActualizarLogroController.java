@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.participa.controller;
 
 import com.participa.ejb.LogroFacadeLocal;
@@ -22,22 +17,26 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "actualizarLogroController")
 @SessionScoped
-public class ActualizarLogroController implements Serializable {
+public class ActualizarLogroController implements Serializable {//inicio clase
 
+//Variables globales--------------comienzo------------------------------------    
     @EJB
-    
     private LogroFacadeLocal logroEJB;
-    
     private Logro logro;
-    
     private List<Logro> logroList;
+//------------------------------------fin-------------------------------------
     
+//Método constructor y postConstructor---------comienzo-----------------------    
     @PostConstruct
-    
-    public void init(){
+    public void init() {
         logro = new Logro();
     }
 
+    public ActualizarLogroController() {
+    }
+//--------------------------------------------fin-----------------------------
+    
+//Métodos de acceso---------------comienzo------------------------------------    
     public Logro getLogro() {
         return logro;
     }
@@ -54,31 +53,32 @@ public class ActualizarLogroController implements Serializable {
     public void setLogroList(List<Logro> logroList) {
         this.logroList = logroList;
     }
+
+//--------------------------------fin-----------------------------------------
     
-    /**
-     * Creates a new instance of ActualizarLogroController
-     */
-    public ActualizarLogroController() {
-    }
-    public List<Logro> listarLogro(){
+
+    public List<Logro> listarLogro() {
         try {
             logroList = this.logroEJB.findAll();
-            
+
         } catch (Exception e) {
         }
-        
+
         return logroList;
     }
-    public void leerLogro(Logro log){
+
+    public void leerLogro(Logro log) {
         this.setLogro(log);
-    }    
-    public void actualizarLogro(){
-        
-        try {logroEJB.edit(logro);
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"El componente con codigo "+logro.getIdLogro()+", se actualizó con éxito", ""));
+    }
+
+    public void actualizarLogro() {
+
+        try {
+            logroEJB.edit(logro);
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El componente con codigo " + logro.getIdLogro() + ", se actualizó con éxito", ""));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"El componente con codigo "+logro.getIdLogro()+", no se actualizo", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El componente con codigo " + logro.getIdLogro() + ", no se actualizo", ""));
         }
     }
 }

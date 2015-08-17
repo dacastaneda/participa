@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Eliminar Asignaturas
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Eliminar Asignaturas</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza la eliminación de las asignaturas.</p>
+                                    <h:form id="frm">
+                                        <p:messages autoUpdate="true" id="mensaje" showDetail="false" showSummary="true"></p:messages>
+                                        
+                                        <p:dataTable id="tbl" var="asignatura" value="#{consultarAsignaturasController.asignaturaList}" emptyMessage="No se encontraron registros"
+                                                     paginator="true" rows="5" paginatorPosition="bottom"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                            <p:column  headerText="Id Asignatura" style="width: 33%" filterBy="#{asignatura.idAsignatura}" filterMatchMode="contains">
+                                                <h:outputText value="#{asignatura.idAsignatura}" />
+                                            </p:column>
+                                            <p:column  headerText="Nombre Asignatura" style="width: 32%" filterBy="#{asignatura.nombreAsignatura}" filterMatchMode="contains">
+                                                <h:outputText value="#{asignatura.nombreAsignatura}" />
+                                            </p:column>
+                                            <p:column  headerText="Estado" style="width: 10%">
+                                                <h:outputText value="#{asignatura.estadoAsignatura}" />
+                                            </p:column>
+                                            <p:column headerText="Eliminar" >
+                                                     <center>
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 80%" value="Eliminar" icon="ui-icon-pencil" actionListener="#{eliminarAsignaturasController.leerUsuario(asignatura)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
+                                                         </center>
+                                                </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                    
+                                     <p:dialog header="Verificación de eliminación" widgetVar="wdlgDatos" id="dlgDatos">
+                                            <h:form>
+                                                
+                                                <p:panelGrid columns="3">
+                                                    <p:column>
+                                                        <p:outputLabel value="¿Desea eliminar la asignatura  #{eliminarAsignaturasController.asignatura.nombreAsignatura} ?"/>
+                                                    </p:column>
+                                                    <p:column>
+                                                    <div class="form_button_box" >
+                                                            <p class=""></p>
+                                                            <p:commandButton  style="width: 100%" value="Si" actionListener="#{eliminarAsignaturasController.eliminarAsignatura()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl" ></p:commandButton>
+                                                     </div>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <div class="form_button_box" >
+                                                            <p class=""></p>
+                                                            <p:commandButton  style="width: 100%" value="No" oncomplete="PF('wdlgDatos').hide();" immediate="true"  ></p:commandButton>
+                                                     </div>
+                                                </p:column>
+                                                </p:panelGrid>
+                                            </h:form>
+                                        </p:dialog>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

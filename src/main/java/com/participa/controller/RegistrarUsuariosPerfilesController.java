@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.participa.controller;
 
 import com.participa.ejb.UsuarioFacadeLocal;
@@ -21,12 +16,17 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "registrarUsuariosPerfilesController")
 @ViewScoped
-public class RegistrarUsuariosPerfilesController implements Serializable{
+public class RegistrarUsuariosPerfilesController implements Serializable {//inicio de clase
 
-@EJB
-private UsuarioFacadeLocal usuarioEJB;
-private Usuario usuario;
-
+    
+//Variables globales------------------------comienzo---------------------------    
+    @EJB
+    private UsuarioFacadeLocal usuarioEJB;
+    private Usuario usuario;
+//-----------------------------------------fin---------------------------------
+    
+    
+//Métodos de acceso-------------------comienzo---------------------------------    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -34,26 +34,31 @@ private Usuario usuario;
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+//---------------------------------------fin-----------------------------------
+    
 
+//Método Constructor y PostConstructor-----------comienzo----------------------    
     @PostConstruct
-    public void init(){
+    public void init() {
         usuario = new Usuario();
     }
 
-    /**
-     * Creates a new instance of RegistrarUsuariosPerfilesController
-     */
     public RegistrarUsuariosPerfilesController() {
     }
+//---------------------------------------fin-----------------------------------
     
-    public void registrarUsuario(){
+    
+//Método que registra al usuario en la base de datos por medio de los metodos
+//definidos el el AbstractFacade.java-----------comienzo-----------------------    
+    public void registrarUsuario() {
         try {
             usuarioEJB.create(usuario);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario Registrado", "ok"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Registrado", "ok"));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario Registrado", "No, se logró registrar"));
-
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario Registrado", "No, se logró registrar"));
         }
     }
+//---------------------------------------fin-----------------------------------
     
-}
+    
+}//fin de clase

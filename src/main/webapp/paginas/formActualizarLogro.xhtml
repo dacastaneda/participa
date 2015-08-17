@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-                title
+               Actualizar Logro
             </ui:define>
 
             <ui:define name="nav">
@@ -21,7 +21,7 @@
             <ui:define name="content">
                 <div class="article">
                     <div class="article_title">
-                        <h2>Actualizar Usuario</h2>
+                        <h2>Actualizar Logro</h2>
                     </div>
                     <div class="article_content" >
                         <div class="form">
@@ -37,7 +37,7 @@
                                             <p:dataTable   id="tbl" var="logro" value="#{actualizarLogroController.logroList}" emptyMessage="No se encontraron registros"
                                                            paginator="true" rows="8" paginatorPosition="bottom"
                                                            paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
-                                                <p:column headerText="Código Logro" id="idLogro" style="width: 15%" >
+                                                <p:column headerText="Código Logro" id="idLogro" style="width: 20%" >
                                                     <h:outputText value="#{logro.idLogro}" />
                                                 </p:column>
                                                 <p:column  headerText="Descripcion logro" >

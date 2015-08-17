@@ -28,64 +28,64 @@
                             <form action="" method="get">
                                 <div class="form_content" >
                                     <p>En el siguiente formulario se realizan consultas de los componentes por asignatura y grado.</p>
-                                   <h:form>
-                                       <p:messages autoUpdate="true" id="mensaje" showDetail="true" showSummary="false"></p:messages>
-                                    <div class="form_field form_field_2" >		
-                                         <p:outputLabel style="color: black" for="slctGrado" value="Grado:"></p:outputLabel>
-                                         <h:selectOneMenu  id="slctGrado" value="#{consultaComponenteController.grados}" required="true" requiredMessage="Grado: Campo obligatorio">
-                                             <f:selectItem   noSelectionOption="true" itemValue="" itemLabel="Seleccione grado"/>
-                                            <f:selectItem  itemValue="6"  itemLabel="Sexto"/>
-                                            <f:selectItem  itemValue="7" itemLabel="Séptimo"/>
-                                            <f:selectItem  itemValue="8" itemLabel="Octavo"/>
-                                            <f:selectItem  itemValue="9" itemLabel="Noveno"/>
-                                            <f:selectItem  itemValue="10" itemLabel="Décimo"/>
-                                            <f:selectItem  itemValue="11" itemLabel="Once"/>
-                                        </h:selectOneMenu>
-                                         <p:message for="slctGrado"   showDetail="true" showSummary="false"></p:message>
-                                    </div>		
+                                    <h:form>
+                                        <p:messages autoUpdate="true" id="mensaje" showDetail="true" showSummary="false"></p:messages>
+                                        <div class="form_field form_field_2" >		
+                                            <p:outputLabel style="color: black" for="slctGrado" value="Grado:"></p:outputLabel>
+                                            <h:selectOneMenu  id="slctGrado" value="#{consultaComponenteController.grados}" required="true" requiredMessage="Grado: Campo obligatorio">
+                                                <f:selectItem   noSelectionOption="true" itemValue="" itemLabel="Seleccione grado"/>
+                                                <f:selectItem  itemValue="6"  itemLabel="Sexto"/>
+                                                <f:selectItem  itemValue="7" itemLabel="Séptimo"/>
+                                                <f:selectItem  itemValue="8" itemLabel="Octavo"/>
+                                                <f:selectItem  itemValue="9" itemLabel="Noveno"/>
+                                                <f:selectItem  itemValue="10" itemLabel="Décimo"/>
+                                                <f:selectItem  itemValue="11" itemLabel="Once"/>
+                                            </h:selectOneMenu>
+                                            <p:message for="slctGrado"   showDetail="true" showSummary="false"></p:message>
+                                        </div>		
 
-                                    <div class="form_field form_field_2" >	
-                                        <p:outputLabel style="color: black" for="slctAsignatura" value="Asignatura:"></p:outputLabel>
-                                        
-                                        <h:selectOneMenu  id="slctAsignatura" value="#{consultaComponenteController.asignaturas}"  required="true" requiredMessage="Asignatura: Campo obligatorio">
-                                            <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione Asignatura" />
-                                            <f:selectItem  itemValue="DEM"  itemLabel="Democracia"/>
-                                            <f:selectItem  itemValue="EDF" itemLabel="Educación Física"/>
-                                            <f:selectItem  itemValue="ESP" itemLabel="Español"/>
-                                            <f:selectItem  itemValue="EST" itemLabel="Estetica"/>
-                                            <f:selectItem  itemValue="FIL" itemLabel="Filosofía"/>
-                                            <f:selectItem  itemValue="FIS" itemLabel="Física"/>
-                                            <f:selectItem  itemValue="MAT" itemLabel="Matemáticas"/>
-                                            <f:selectItem  itemValue="QUI" itemLabel="Química"/>
-                                            <f:selectItem  itemValue="REL" itemLabel="Religión"/>
-                                            <f:selectItem  itemValue="SIS" itemLabel="Sistemas"/>
-                                        </h:selectOneMenu>
-                                        <p:message for="slctAsignatura"   showDetail="true" showSummary="false"></p:message>
-                                    </div>
-                                      
-                                    <!-- <div class="form_field form_field_2" >		
-                                         <label for="slctAsignatura"><h3>Asignatura<sup class=""></sup></h3></label>	
-                                         <h:selectOneMenu value="#{consultaComponenteController.asignatura.nombreAsignatura}">
-                                             <f:selectItem   itemValue="" itemLabel="Seleccione una asignatura"/>
-                                             <f:selectItems value="#{consultaComponenteController.asignaturaList}" />
- 
-                                         </h:selectOneMenu>	
-                                     </div>		
- 
-                                     <div class="form_field form_field_2" >		
-                                         <label for="slctGrado"><h3>Grado<sup class=""></sup></h3></label>	
-                                         <h:selectOneMenu value="#{consultaComponenteController.grado.nombreGrado}">
-                                             <f:selectItem   itemValue="" itemLabel="Seleccione un grado"/>
-                                             <f:selectItems value="#{consultaComponenteController.gradoList}" />
- 
-                                         </h:selectOneMenu>	
-                                     </div>		
-                                     <br/> -->
-                                    
+                                        <div class="form_field form_field_2" >	
+                                            <p:outputLabel style="color: black" for="slctAsignatura" value="Asignatura:"></p:outputLabel>
 
+                                            <h:selectOneMenu  id="slctAsignatura" value="#{consultaComponenteController.asignaturas}"  required="true" requiredMessage="Asignatura: Campo obligatorio">
+                                                <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione Asignatura" />
+                                                <f:selectItem  itemValue="DEM"  itemLabel="Democracia"/>
+                                                <f:selectItem  itemValue="EDF" itemLabel="Educación Física"/>
+                                                <f:selectItem  itemValue="ESP" itemLabel="Español"/>
+                                                <f:selectItem  itemValue="EST" itemLabel="Estetica"/>
+                                                <f:selectItem  itemValue="FIL" itemLabel="Filosofía"/>
+                                                <f:selectItem  itemValue="FIS" itemLabel="Física"/>
+                                                <f:selectItem  itemValue="MAT" itemLabel="Matemáticas"/>
+                                                <f:selectItem  itemValue="QUI" itemLabel="Química"/>
+                                                <f:selectItem  itemValue="REL" itemLabel="Religión"/>
+                                                <f:selectItem  itemValue="SIS" itemLabel="Sistemas"/>
+                                            </h:selectOneMenu>
+                                            <p:message for="slctAsignatura"   showDetail="true" showSummary="false"></p:message>
+                                        </div>
+
+                                        <!-- <div class="form_field form_field_2" >		
+                                             <label for="slctAsignatura"><h3>Asignatura<sup class=""></sup></h3></label>	
+                                             <h:selectOneMenu value="#{consultaComponenteController.asignatura.nombreAsignatura}">
+                                                 <f:selectItem   itemValue="" itemLabel="Seleccione una asignatura"/>
+                                                 <f:selectItems value="#{consultaComponenteController.asignaturaList}" />
+     
+                                             </h:selectOneMenu>	
+                                         </div>		
+     
+                                         <div class="form_field form_field_2" >		
+                                             <label for="slctGrado"><h3>Grado<sup class=""></sup></h3></label>	
+                                             <h:selectOneMenu value="#{consultaComponenteController.grado.nombreGrado}">
+                                                 <f:selectItem   itemValue="" itemLabel="Seleccione un grado"/>
+                                                 <f:selectItems value="#{consultaComponenteController.gradoList}" />
+     
+                                             </h:selectOneMenu>	
+                                         </div>		
+                                         <br/> -->
 
 
-                                       
+
+
+
                                         <div class="form_field " >
                                             <h:commandButton  image="/image/pdf-icon.png" style="width: 50px; height: 50px" actionListener="#{consultaComponenteController.exportarPdf}"/>
 

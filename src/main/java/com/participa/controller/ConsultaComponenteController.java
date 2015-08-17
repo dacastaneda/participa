@@ -1,24 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.participa.controller;
 
-import com.participa.ejb.AsignaturaFacadeLocal;
-import com.participa.ejb.AsignaturagradoFacadeLocal;
-import com.participa.ejb.ComponenteFacade;
 import com.participa.ejb.ComponenteFacadeLocal;
-import com.participa.ejb.GradoFacadeLocal;
-import com.participa.ejb.PeriodocalificableFacadeLocal;
-import com.participa.ejb.PeriodolectivoFacade;
-import com.participa.ejb.PeriodolectivoFacadeLocal;
 import com.participa.model.Asignatura;
 import com.participa.model.Componente;
 import com.participa.model.Grado;
-import com.participa.model.Periodocalificable;
-import com.participa.model.Periodolectivo;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -28,9 +13,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -52,40 +35,37 @@ import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
  */
 @Named
 @ViewScoped
-public class ConsultaComponenteController implements Serializable{
-    
-    @EJB
-    private GradoFacadeLocal gradoEJB;
-   
-    @EJB
-    private AsignaturaFacadeLocal asignaturaEJB;
-    
+public class ConsultaComponenteController implements Serializable {//inicia clase
+
+//Variables globales-------------------comienzo--------------------------------    
     @EJB
     private ComponenteFacadeLocal componenteEJB;
-    
     private Asignatura asignatura;
     private Grado grado;
-    
     private String asignaturas;
     private String grados;
-    
     private List<SelectItem> asignaturaList;
     private List<SelectItem> gradoList;
-    
     private List<Componente> componenteList;
+//----------------------------------------fin----------------------------------
     
     
-   @PostConstruct
-   public void init(){
-       asignaturaList = new ArrayList<>();
-       asignatura = new Asignatura();
-       gradoList = new ArrayList<>();
-       grado = new Grado();
-       
-       
-        
-   }
+    
 
+//Métodos PostConstructor---------comienzo-------------------------------------    
+    @PostConstruct
+    public void init() {
+        asignaturaList = new ArrayList<>();
+        asignatura = new Asignatura();
+        gradoList = new ArrayList<>();
+        grado = new Grado();
+    }
+//----------------------------------------fin----------------------------------
+    
+    
+    
+
+//Métodos de acceso----------------------comienzo------------------------------   
     public String getAsignaturas() {
         return asignaturas;
     }
@@ -102,12 +82,7 @@ public class ConsultaComponenteController implements Serializable{
         this.grados = grados;
     }
 
-    
-
-   
-   
     public List<Componente> getComponenteList() {
-        
         return componenteList;
     }
 
@@ -124,7 +99,6 @@ public class ConsultaComponenteController implements Serializable{
     }
 
     public List<SelectItem> getGradoList() {
-        
         return gradoList;
     }
 
@@ -132,8 +106,6 @@ public class ConsultaComponenteController implements Serializable{
         this.gradoList = gradoList;
     }
 
-   
-   
     public Asignatura getAsignatura() {
         return asignatura;
     }
@@ -143,115 +115,150 @@ public class ConsultaComponenteController implements Serializable{
     }
 
     public List<SelectItem> getAsignaturaList() {
-       
         return asignaturaList;
     }
 
     public void setAsignaturaList(List<SelectItem> asignaturaList) {
         this.asignaturaList = asignaturaList;
     }
+//------------------------------------------------fin---------------------------
+    
+    
+    
 
-   
-   public List<Componente> listarComponentes(){
-       try {
-           return this.componenteEJB.findAll();
-       } catch (Exception e) {
-       }
-   
-       
+//Método para listar los datos de la tabla componentes, se utiliza métodos de la 
+//clase AbstractFacade.java
+//Actualmente no se esta utilizando-----------------comienzo--------------------
+    public List<Componente> listarComponentes() {
+        try {
+            return this.componenteEJB.findAll();
+        } catch (Exception e) {
+        }
         return null;
-       
-       
-   }
+    }
+//---------------------------------------------------fin-----------------------
     
-     public void consultaComponente(){
-         
-                 this.componenteList =  componenteEJB.invocarProcedure(grados,asignaturas);
-       
-   }
+    
+    
+
+//Método que lista los datos de la tabla componente, traidos por medio de un procedimiento
+//almacenado, el cual tiene de entrada dos parametros "grados" y "asignaturas"
+//------------------------------comienzo--------------------------------------    
+    public void consultaComponente() {
+//Se llena la lista componenteList con los datos traidos del procedimiento
+        this.componenteList = componenteEJB.invocarProcedure(grados, asignaturas);
+    }
+//---------------------------------fin-----------------------------------------
+    
+    
+
+//Método para exportar el reporte a pdf--------------comienzo------------------
+//Se declara un Map con clave String y valor Object
+    public void exportarPdf() throws JRException, IOException {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idGrado", this.grados);//se añaden los parametros al Map
+        parametros.put("idAsignatura", this.asignaturas);
+
+//Creamos un archivo y le agregamos el reporte .jasper mediante .getRealPath para obtener el archivo desde su 
+//ubicación
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
         
-   public void exportarPdf() throws JRException, IOException{
-       Map<String, Object> parametros = new HashMap<>();
-       parametros.put("idGrado", this.grados);
-       parametros.put("idAsignatura", this.asignaturas);
-       
-       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
-       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
-       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.pdf");
+//Pasamos los datos al reporte "Pintamos el reporte", le pasamos el archivo, los parametros, y la lista.        
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+        
+//Funcionalidad para el envio de una respuesta  
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=componenteReporte.pdf");//nombre y tipo de archivo
         try (ServletOutputStream stream = response.getOutputStream()) {
-            JasperExportManager.exportReportToPdfStream(jp, stream);
-            
-            stream.flush();
-            stream.close();
+            JasperExportManager.exportReportToPdfStream(jp, stream);//exportar a PDF
+
+            stream.flush();//Se obliga a pasar todos los datos al archivo, vacia buffers de salida
+            stream.close();//liberar los recursos del outPutStream
         }
-       FacesContext.getCurrentInstance().responseComplete();
-   }
-   
-   public void exportarExcel() throws JRException, IOException{
-       Map<String, Object> parametros = new HashMap<>();
-       parametros.put("idGrado", this.grados);
-       parametros.put("idAsignatura", this.asignaturas);
-       
-       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
-       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
-       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.xls");
-        try (ServletOutputStream stream = response.getOutputStream()) {
-            
-            JRXlsExporter exporter = new JRXlsExporter();
-            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
-            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
-            exporter.exportReport();
-            
-            stream.flush();
-            stream.close();
-        }
-       FacesContext.getCurrentInstance().responseComplete();
-   }
+        FacesContext.getCurrentInstance().responseComplete();//se termina la respuesta
+    }
+//---------------------------------------------fin----------------------------
     
-   
-   public void exportarPpt() throws JRException, IOException{
-       Map<String, Object> parametros = new HashMap<>();
-       parametros.put("idGrado", this.grados);
-       parametros.put("idAsignatura", this.asignaturas);
-       
-       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
-       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
-       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.ppt");
+    
+    
+    
+//Método para exportar a formato axcel--------------comienzo------------------    
+    public void exportarExcel() throws JRException, IOException {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idGrado", this.grados);
+        parametros.put("idAsignatura", this.asignaturas);
+
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=componenteReporte.xls");
         try (ServletOutputStream stream = response.getOutputStream()) {
-            
-            JRPptxExporter exporter = new JRPptxExporter();
+
+            JRXlsExporter exporter = new JRXlsExporter();//Exportar excel
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
             exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
-            exporter.exportReport();
-            
+            exporter.exportReport();//exportar reporte
+
             stream.flush();
             stream.close();
         }
-       FacesContext.getCurrentInstance().responseComplete();
-   }
-   
-   public void exportarDoc() throws JRException, IOException{
-       Map<String, Object> parametros = new HashMap<>();
-       parametros.put("idGrado", this.grados);
-       parametros.put("idAsignatura", this.asignaturas);
-       
-       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
-       JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
-       HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-       response.addHeader("Content-disposition", "attachment; filename=componenteReporte.doc");
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+//------------------------------------------fin-------------------------------
+    
+    
+    
+  
+//Método para exportar a power point---------comienzo------------------------ -   
+    public void exportarPpt() throws JRException, IOException {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idGrado", this.grados);
+        parametros.put("idAsignatura", this.asignaturas);
+
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=componenteReporte.ppt");
         try (ServletOutputStream stream = response.getOutputStream()) {
-            
-            JRDocxExporter exporter = new JRDocxExporter();
+
+            JRPptxExporter exporter = new JRPptxExporter();//exportar a power point
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
             exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
             exporter.exportReport();
-            
+
             stream.flush();
             stream.close();
         }
-       FacesContext.getCurrentInstance().responseComplete();
-   }
-}
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+//-----------------------------------------fin--------------------------------
+    
+    
+    
+
+//Exportar a word .doc-----------------comienzo-------------------------------    
+    public void exportarDoc() throws JRException, IOException {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idGrado", this.grados);
+        parametros.put("idAsignatura", this.asignaturas);
+
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/reportComponente.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.componenteList));
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=componenteReporte.doc");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+
+            JRDocxExporter exporter = new JRDocxExporter();//Exportar a word .doc
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
+            exporter.exportReport();
+
+            stream.flush();
+            stream.close();
+        }
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+//---------------------------------------fin----------------------------------
+    
+}//fin de clase

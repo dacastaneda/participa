@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="nav">
+                nav
+            </ui:define>
+
+            <ui:define name="content">
+               <div class="article">
+                    <div class="article_title">
+                        <h2>Registrar periodo lectivo</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza eL registro del periodo lectivo.</p>
+                                    <div> 
+
+                                        <h:form>
+                                            
+                                            <p:messages id="mensaje" showDetail="false" showSummary="true"  autoUpdate="true"></p:messages>
+                                            
+                                            <p:panelGrid id="panel" columns="3" style="width: 100%">
+                                            <p:column>
+                                                <p:outputLabel for="txtIdPeriodoLectivo" value="Id Periodo Lectivo:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtIdPeriodoLectivo"  value="#{registrarPeriodoLectivoController.periodoLectivo.idPeriodoLectivo}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtIdPeriodoLectivo"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtAno" value="Año:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtAno"  value="#{registrarPeriodoLectivoController.periodoLectivo.ano}" /> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtAno"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtEstado" value="Estado:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtEstado"  value="#{registrarPeriodoLectivoController.periodoLectivo.estadoPeriodoLectivo}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtEstado"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                </p:panelGrid>
+                                            <br/>
+                                    <div class="form_button_box">
+                                        <p class=""></p>
+                                        <p:commandButton value="Registrar" update="panel" action="#{registrarPeriodoLectivoController.registrarPeriodoLectivo()}">
+                                                
+                                            </p:commandButton>
+                                    </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

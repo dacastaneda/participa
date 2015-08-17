@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-               Consultar Usuarios
+                Consultar Usuarios
             </ui:define>
 
             <ui:define name="nav">
@@ -63,9 +63,9 @@
                                                 </p:column>
                                                 <p:column headerText="Consultar"  >
                                                     <div class="form_button_box" >
-                                                            <p class=""></p>
-                                                            <p:commandButton  style="width: 100%" value="Consultar" icon="ui-icon-zoomin" actionListener="#{consultarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
-                                                     </div>
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 100%" value="Consultar" icon="ui-icon-zoomin" actionListener="#{consultarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
                                                 </p:column>   
                                             </p:dataTable>
 
@@ -74,7 +74,7 @@
 
                                         <p:dialog header="Datos a consultar" widgetVar="wdlgDatos" id="dlgDatos">
                                             <h:form>
-                                                
+
                                                 <p:panelGrid columns="4">
 
                                                     <p:column>
@@ -86,7 +86,7 @@
                                                         <p:outputLabel for="txtTipoDocumento" value="Tipo Documento: "  style="width: 100%"></p:outputLabel>
 
                                                         <p:outputLabel id="txtTipoDocumento" value="#{consultarUsuariosPerfilesController.usuario.tipoDocumento}" >
-                                                            
+
                                                         </p:outputLabel>
                                                     </p:column>
                                                     <p:column>
@@ -121,7 +121,7 @@
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento: "   style="width: 100%">
-                                                        
+
                                                         </p:outputLabel>
                                                         <p:outputLabel id="txtFechaNacimiento"  value="#{consultarUsuariosPerfilesController.usuario.fechaNacimiento}"><f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime></p:outputLabel>
                                                     </p:column>
@@ -129,7 +129,7 @@
                                                         <p:outputLabel for="txtEmail" value="email:"   style="width: 100%"></p:outputLabel>
 
                                                         <p:outputLabel id="txtEmail"  value="#{consultarUsuariosPerfilesController.usuario.emailPersona}" >
-                                                            
+
                                                         </p:outputLabel>
                                                     </p:column>
 
@@ -137,12 +137,12 @@
                                                         <p:outputLabel for="selRol" value="Rol:"  style="width: 100%"></p:outputLabel>
 
                                                         <p:outputLabel id="selRol" value="#{consultarUsuariosPerfilesController.usuario.rol}"  style="width: 80%">
-                                                            
+
                                                         </p:outputLabel>
 
                                                     </p:column>
                                                     <p:column>
-                                                        
+
                                                         <div class="form_button_box">
                                                             <p class=""></p>
                                                             <p:commandButton value="Salir"  style="width: 75%" oncomplete="PF('wdlgDatos').hide();" immediate="true" >

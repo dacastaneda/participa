@@ -26,7 +26,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "perfilusuario")
-@NamedStoredProcedureQuery(name = "eliminarPerfilUsuario", procedureName = "eliminarPerfilUsuario",parameters = { @StoredProcedureParameter(mode = ParameterMode.IN, name = "idPersona",type = Integer.class)})
+@NamedStoredProcedureQuery(name = "eliminarPerfilUsuario", procedureName = "eliminarPerfilUsuario",parameters = { 
+    @StoredProcedureParameter(mode = ParameterMode.IN, name = "idPersona",type = Integer.class)})
 @NamedQueries({
     @NamedQuery(name = "Perfilusuario.findAll", query = "SELECT p FROM Perfilusuario p"),
     @NamedQuery(name = "Perfilusuario.findByIdPerfilUsuario", query = "SELECT p FROM Perfilusuario p WHERE p.idPerfilUsuario = :idPerfilUsuario"),

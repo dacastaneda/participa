@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-               Actualizar Usuarios
+               Actualizar mis datos
             </ui:define>
 
             <ui:define name="nav">
@@ -28,109 +28,63 @@
 
                             <form action="" method="get">
                                 <div class="form_content" >
-                                    <p>En el siguiente formulario se permite realizar la actualización de los usuarios.</p>
+                                    <p>En el siguiente formulario se permite realizar la actualización de los datos del perfil.</p>
                                     <div> 
 
-                                        <h:form id="frm">
-                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
-
-                                            <p:dataTable   id="tbl" var="usuario" value="#{modificarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
-                                                           paginator="true" rows="8" paginatorPosition="bottom"
-                                                           paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
-                                                <p:column headerText="Id" id="idPersona" style="width: 5%" >
-                                                    <h:outputText value="#{usuario.idPersona}" />
-                                                </p:column>
-                                                <p:column  headerText="Documento de identidad"  filterBy="#{usuario.documentoIdentidad}">
-                                                    <h:outputText value="#{usuario.documentoIdentidad}" />
-                                                </p:column>
-
-                                                <p:column headerText="Primer apellido"  filterBy="#{usuario.primerApellido}" filterMatchMode="contains" >
-                                                    <h:outputText value="#{usuario.primerApellido}" >
-
-                                                    </h:outputText>
-                                                </p:column>
-                                                <p:column headerText="Primer nombre"  filterBy="#{usuario.primerNombre}" filterMatchMode="contains" >
-                                                    <h:outputText value="#{usuario.primerNombre}" >
-
-                                                    </h:outputText>
-
-                                                </p:column>
-                                                <p:column headerText="Nombre usuario"  filterBy="#{usuario.nombreUsuario}" filterMatchMode="contains" >
-                                                    <h:outputText value="#{usuario.nombreUsuario}" >
-
-                                                    </h:outputText>
-
-                                                </p:column>
-                                                <p:column headerText="Actualizar"  >
-                                                    <div class="form_button_box" >
-                                                            <p class=""></p>
-                                                            <p:commandButton  style="width: 100%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{modificarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
-                                                     </div>
-                                                </p:column>   
-                                            </p:dataTable>
-
-
-                                        </h:form>
-
-                                        <p:dialog header="Datos para actualizar" widgetVar="wdlgDatos" id="dlgDatos">
+                                        
                                             <h:form>
-                                                
-                                                <p:panelGrid columns="4">
+                                                <p:messages id="mensaje" showSummary="true" autoUpdate="true"></p:messages>
+                                                <p:panelGrid columns="2">
 
                                                     <p:column>
                                                         <p:outputLabel for="txtDocumento" class="form_field_1" value="Documento de Identidad:" style="width: 100%"></p:outputLabel>
 
-                                                        <h:inputText id="txtDocumento" value="#{modificarUsuariosPerfilesController.usuario.documentoIdentidad}" /> 
+                                                        <p:outputLabel id="txtDocumento" value="#{actualizarDatosController.us.documentoIdentidad}" /> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtTipoDocumento" value="Tipo Documento:" style="width: 100%"></p:outputLabel>
-
-                                                        <p:selectOneMenu id="txtTipoDocumento" value="#{modificarUsuariosPerfilesController.usuario.tipoDocumento}" required="true" requiredMessage="Campo Obligatorio" style="width: 80%">
-                                                            <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
-                                                            <f:selectItem itemLabel="CC" itemValue="CC"/>
-                                                            <f:selectItem itemLabel="CE" itemValue="CE"/>
-                                                            <f:selectItem itemLabel="TI" itemValue="TI"/>
-                                                        </p:selectOneMenu>
+                                                        <p:outputLabel id="txtTipoDocumento" value="#{actualizarDatosController.us.tipoDocumento}" /> 
+                                                        
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtPrimerApellido" value="Primer Apellido:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtPrimerApellido"  value="#{modificarUsuariosPerfilesController.usuario.primerApellido}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:outputLabel id="txtPrimerApellido"  value="#{actualizarDatosController.us.primerApellido}" /> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtSegundoApellido" value="Segundo Apellido:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtSegundoApellido"  value="#{modificarUsuariosPerfilesController.usuario.segundoApellido}" /> 
+                                                        <p:outputLabel id="txtSegundoApellido"  value="#{actualizarDatosController.us.segundoApellido}" /> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtPrimerNombre" value="Primer Nombre:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtPrimerNombre"  value="#{modificarUsuariosPerfilesController.usuario.primerNombre}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:outputLabel id="txtPrimerNombre"  value="#{actualizarDatosController.us.primerNombre}"/> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtSegundoNombre" value="Segundo Nombre:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtSegundoNombre"  value="#{modificarUsuariosPerfilesController.usuario.segundoNombre}" /> 
+                                                        <p:outputLabel id="txtSegundoNombre"  value="#{actualizarDatosController.us.segundoNombre}" /> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtTelefono" value="Telefono" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtTelefono"  value="#{modificarUsuariosPerfilesController.usuario.telefonoPersona}"  required="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:inputText id="txtTelefono"  value="#{actualizarDatosController.us.telefonoPersona}"  required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtDireccionPersona" value="Direccion Persona:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtDireccionPersona"  value="#{modificarUsuariosPerfilesController.usuario.direccionPersona}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:inputText id="txtDireccionPersona"  value="#{actualizarDatosController.us.direccionPersona}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:calendar id="txtFechaNacimiento"  value="#{modificarUsuariosPerfilesController.usuario.fechaNacimiento}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:outputLabel id="txtFechaNacimiento"  value="#{actualizarDatosController.fecha}" /> 
                                                     </p:column>
                                                     <p:column>
                                                         <p:outputLabel for="txtEmail" value="email:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtEmail"  value="#{modificarUsuariosPerfilesController.usuario.emailPersona}" required="true" requiredMessage="Campo Obligatorio" validatorMessage="Formato correo inválido">
+                                                        <p:inputText id="txtEmail"  value="#{actualizarDatosController.us.emailPersona}" required="true" requiredMessage="Campo Obligatorio" validatorMessage="Formato correo inválido">
                                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
                                                             </f:validateRegex>
                                                         </p:inputText>
@@ -139,32 +93,22 @@
                                                     <p:column>
                                                         <p:outputLabel for="selRol" value="Rol:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:selectOneMenu id="selRol" value="#{modificarUsuariosPerfilesController.usuario.rol}" required="true" requiredMessage="Campo Obligatorio" style="width: 80%">
-                                                            <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
-                                                            <f:selectItem itemLabel="Coordinador" itemValue="coordinador"/>
-                                                            <f:selectItem itemLabel="Docente" itemValue="docente"/>
-                                                            <f:selectItem itemLabel="Estudiante" itemValue="estudiante"/>
-                                                        </p:selectOneMenu>
+                                                        <p:outputLabel id="selRol" value="#{actualizarDatosController.us.rol}"/>
 
                                                     </p:column>
                                                     <p:column>
                                                         <br/>
                                                         <div class="form_button_box">
                                                             <p class=""></p>
-                                                            <p:commandButton value="Modificar"  style="width: 75%" actionListener="#{modificarUsuariosPerfilesController.modificarUsuario()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
+                                                            <p:commandButton value="Modificar"  style="width: 75%" actionListener="#{actualizarDatosController.modificarUsuario()}"  >
 
                                                             </p:commandButton>
                                                         </div>
-                                                        <div class="form_button_box">
-                                                            <p class=""></p>
-                                                            <p:commandButton value="Cancelar"  style="width: 75%" oncomplete="PF('wdlgDatos').hide();" immediate="true" >
-
-                                                            </p:commandButton>
-                                                        </div>
+                                                       
                                                     </p:column>
                                                 </p:panelGrid>
                                             </h:form>
-                                        </p:dialog>
+                                     
                                     </div>
                                 </div>
                             </form>

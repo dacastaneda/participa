@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportComponente" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57ead950-020e-4117-baa9-2c7edc8a7c00">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="34"/>
+	<property name="ireport.y" value="92"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -102,7 +102,7 @@
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="114" height="70" uuid="9ce4c1f5-427f-4446-b68f-577739e28063"/>
-				<imageExpression><![CDATA["C:\\Users\\DIANA\\Documents\\GitHub\\participa\\src\\main\\webapp\\image\\header_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["/home/dacastanedah/NetBeansProjects/participa/src/main/webapp/image/header_logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -122,7 +122,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="305" y="21" width="45" height="13" uuid="171a64b4-71bc-4b6d-a30f-010e01a58218"/>
+				<reportElement x="286" y="21" width="64" height="13" uuid="171a64b4-71bc-4b6d-a30f-010e01a58218"/>
 				<text><![CDATA[Id Grado:]]></text>
 			</staticText>
 			<textField>
@@ -130,11 +130,11 @@
 				<textFieldExpression><![CDATA[$P{idGrado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="394" y="21" width="66" height="13" uuid="ee0585e7-ea64-4410-990b-dfe1cc2defec"/>
+				<reportElement x="394" y="21" width="79" height="13" uuid="ee0585e7-ea64-4410-990b-dfe1cc2defec"/>
 				<text><![CDATA[Id Asignatura:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="463" y="21" width="80" height="14" uuid="8b4a93b0-f38a-4b9e-a196-11d22ff7dea7"/>
+				<reportElement x="473" y="21" width="70" height="14" uuid="8b4a93b0-f38a-4b9e-a196-11d22ff7dea7"/>
 				<textFieldExpression><![CDATA[$P{idAsignatura}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -187,7 +187,7 @@
 			</staticText>
 			<image>
 				<reportElement x="201" y="0" width="20" height="17" uuid="85fe13ea-a565-42f8-9240-387939c74d84"/>
-				<imageExpression><![CDATA["C:\\Users\\DIANA\\Documents\\GitHub\\participa\\src\\main\\webapp\\image\\logoparticipa3.png"]]></imageExpression>
+				<imageExpression><![CDATA["/home/dacastanedah/NetBeansProjects/participa/src/main/webapp/image/logoparticipa3.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="cf2c6ace-42ed-4ed7-9227-9cb68cd2b7e7"/>

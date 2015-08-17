@@ -26,7 +26,7 @@ public class TemplateController implements Serializable{
         Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("User");
         
             if (us == null) {
-                context.getExternalContext().redirect("./permisos.xhtml");
+                context.getExternalContext().redirect("../index.xhtml");
             }
         }catch(Exception e){
             

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Actualizar Asignaturas
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Actualizar Asignaturas</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se permite realizar la actualización de las asignaturas.</p>
+                                    <div> 
+
+                                        <h:form id="frm">
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+
+                                             <p:dataTable id="tbl" var="asignatura" value="#{consultarAsignaturasController.asignaturaList}" emptyMessage="No se encontraron registros"
+                                                     paginator="true" rows="5" paginatorPosition="bottom"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                                 <p:column  headerText="Id Asignatura" style="width: 33%" filterBy="#{asignatura.idAsignatura}" filterMatchMode="contains">
+                                                <h:outputText value="#{asignatura.idAsignatura}" />
+                                            </p:column>
+                                                 <p:column  headerText="Nombre Asignatura" style="width: 32%" filterBy="#{asignatura.nombreAsignatura}" filterMatchMode="contains">
+                                                <h:outputText value="#{asignatura.nombreAsignatura}" />
+                                            </p:column>
+                                            <p:column  headerText="Estado" style="width: 10%">
+                                                <h:outputText value="#{asignatura.estadoAsignatura}" />
+                                            </p:column>
+                                                 <p:column headerText="Actualizar" >
+                                                     <center>
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 80%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{actualizarAsignaturasController.leerUsuario(asignatura)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
+                                                         </center>
+                                                </p:column> 
+                                        </p:dataTable>
+
+
+                                        </h:form>
+
+                                        <p:dialog header="Datos para actualizar" widgetVar="wdlgDatos" id="dlgDatos">
+                                            <h:form>
+
+                                                <p:panelGrid columns="1">
+
+                                                    <p:column>
+                                                        <p:outputLabel for="txtIdAsignatura" class="form_field_1" value="Id Asignatura:" style="width: 100%"></p:outputLabel>
+
+                                                        <h:inputText id="txtIdAsignatura" value="#{actualizarAsignaturasController.asignatura.idAsignatura}" /> 
+                                                    </p:column>
+                                                    
+                                                    <p:column>
+                                                        <p:outputLabel for="txtNombreAsignatura" value="Nombre Asignatura:" style="width: 100%"></p:outputLabel>
+
+                                                        <p:inputText id="txtNombreAsignatura"  value="#{actualizarAsignaturasController.asignatura.nombreAsignatura}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:outputLabel for="txtEstado" value="Estado:" style="width: 100%"></p:outputLabel>
+
+                                                        <p:inputText id="txtEstado"  value="#{actualizarAsignaturasController.asignatura.estadoAsignatura}" /> 
+                                                    </p:column>
+                                                    
+                                                    <p:column>
+                                                        <br/>
+                                                        <div class="form_button_box">
+                                                            <p class=""></p>
+                                                            <p:commandButton value="Actualizar"  style="width: 75%" actionListener="#{actualizarAsignaturasController.modificarAsignatura()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
+
+                                                            </p:commandButton>
+                                                        </div>
+                                                        <div class="form_button_box">
+                                                            <p class=""></p>
+                                                            <p:commandButton value="Cancelar"  style="width: 75%" oncomplete="PF('wdlgDatos').hide();" immediate="true" >
+
+                                                            </p:commandButton>
+                                                        </div>
+                                                    </p:column>
+                                                </p:panelGrid>
+                                            </h:form>
+                                        </p:dialog>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -32,7 +32,7 @@
                                     <div> 
 
                                         <h:form>
-                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  severity="info" autoUpdate="false"></p:messages>
                                             
                                             <p:panelGrid id="panel" columns="3" style="width: 100%">
                                                 
@@ -190,7 +190,7 @@
                                             <br/>
                                     <div class="form_button_box">
                                         <p class=""></p>
-                                        <p:commandButton value="Registrar" update="panel" action="#{registrarUsuariosPerfilesController.registrarUsuario()}">
+                                        <p:commandButton value="Registrar" update="panel, mensaje"  action="#{registrarUsuariosPerfilesController.registrarUsuario()}">
                                                 
                                             </p:commandButton>
                                     </div>

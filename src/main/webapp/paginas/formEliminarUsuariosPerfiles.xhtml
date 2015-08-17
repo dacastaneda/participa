@@ -33,7 +33,7 @@
 
                                         <h:form id="frm">
                                             <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
-                                            <p:dataTable   id="tbl" var="usuario" value="#{eliminarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
+                                            <p:dataTable   id="tbl" var="usuario" value="#{consultarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
                                                            paginator="true" rows="8" paginatorPosition="bottom"
                                                            paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
                                                 <p:column headerText="Id" id="idPersona" style="width: 5%" >

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Eliminar Grado 
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Eliminar Grados</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza la eliminación de los grados.</p>
+                                    <h:form id="frm">
+                                        <p:messages autoUpdate="true" id="mensaje" showDetail="false" showSummary="true"></p:messages>
+                                        
+                                        <p:dataTable id="tbl" var="grado" value="#{consultarGradosController.gradoList}" emptyMessage="No se encontraron registros"
+                                                     paginator="true" rows="5" paginatorPosition="bottom"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                            <p:column  headerText="Id Grado" style="width: 33%" filterBy="#{grado.idGrado}" filterMatchMode="contains">
+                                                <h:outputText value="#{grado.idGrado}" />
+                                            </p:column>
+                                            <p:column  headerText="Nombre Grado" style="width: 32%" filterBy="#{grado.nombreGrado}" filterMatchMode="contains">
+                                                <h:outputText value="#{grado.nombreGrado}" />
+                                            </p:column>
+                                            <p:column  headerText="Estado" style="width: 10%">
+                                                <h:outputText value="#{grado.estadoGrado}" />
+                                            </p:column>
+                                            <p:column headerText="Eliminar" >
+                                                     <center>
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 80%" value="Eliminar" icon="ui-icon-pencil" actionListener="#{eliminarGradosController.leerUsuario(grado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
+                                                         </center>
+                                                </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                    
+                                     <p:dialog header="Verificación de eliminación" widgetVar="wdlgDatos" id="dlgDatos">
+                                            <h:form>
+                                                
+                                                <p:panelGrid columns="3">
+                                                    <p:column>
+                                                        <p:outputLabel value="¿Desea eliminar el grado  #{eliminarGradosController.grado.nombreGrado} ?"/>
+                                                    </p:column>
+                                                    <p:column>
+                                                    <div class="form_button_box" >
+                                                            <p class=""></p>
+                                                            <p:commandButton  style="width: 100%" value="Si" actionListener="#{eliminarGradosController.eliminarGrado()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl" ></p:commandButton>
+                                                     </div>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <div class="form_button_box" >
+                                                            <p class=""></p>
+                                                            <p:commandButton  style="width: 100%" value="No" oncomplete="PF('wdlgDatos').hide();" immediate="true"  ></p:commandButton>
+                                                     </div>
+                                                </p:column>
+                                                </p:panelGrid>
+                                            </h:form>
+                                        </p:dialog>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

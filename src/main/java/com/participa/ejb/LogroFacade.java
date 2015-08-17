@@ -6,9 +6,11 @@
 package com.participa.ejb;
 
 import com.participa.model.Logro;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +29,6 @@ public class LogroFacade extends AbstractFacade<Logro> implements LogroFacadeLoc
     public LogroFacade() {
         super(Logro.class);
     }
+    
     
 }

@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-               Actualizar Usuarios
+                Actualizar Usuarios
             </ui:define>
 
             <ui:define name="nav">
@@ -34,7 +34,7 @@
                                         <h:form id="frm">
                                             <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
 
-                                            <p:dataTable   id="tbl" var="usuario" value="#{modificarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
+                                            <p:dataTable   id="tbl" var="usuario" value="#{consultarUsuariosPerfilesController.usuarioList}" emptyMessage="No se encontraron registros"
                                                            paginator="true" rows="8" paginatorPosition="bottom"
                                                            paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
                                                 <p:column headerText="Id" id="idPersona" style="width: 5%" >
@@ -63,9 +63,9 @@
                                                 </p:column>
                                                 <p:column headerText="Actualizar"  >
                                                     <div class="form_button_box" >
-                                                            <p class=""></p>
-                                                            <p:commandButton  style="width: 100%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{modificarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
-                                                     </div>
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 100%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{modificarUsuariosPerfilesController.leerUsuario(usuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
                                                 </p:column>   
                                             </p:dataTable>
 
@@ -74,7 +74,7 @@
 
                                         <p:dialog header="Datos para actualizar" widgetVar="wdlgDatos" id="dlgDatos">
                                             <h:form>
-                                                
+
                                                 <p:panelGrid columns="4">
 
                                                     <p:column>
@@ -151,7 +151,7 @@
                                                         <br/>
                                                         <div class="form_button_box">
                                                             <p class=""></p>
-                                                            <p:commandButton value="Modificar"  style="width: 75%" actionListener="#{modificarUsuariosPerfilesController.modificarUsuario()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
+                                                            <p:commandButton value="Actualizar"  style="width: 75%" actionListener="#{modificarUsuariosPerfilesController.modificarUsuario()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
 
                                                             </p:commandButton>
                                                         </div>

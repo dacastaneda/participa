@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.participa.controller;
 
 import com.participa.ejb.UsuarioFacadeLocal;
@@ -21,17 +16,24 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class IndexController implements Serializable{
-    
+public class IndexController implements Serializable {//inicio de clase
+
+//Variables globales--------------------comienzo------------------------------    
     @EJB
     private UsuarioFacadeLocal EJBUsuario;
     private Usuario usuario;
-    
+//-----------------------------------------fin--------------------------------
+
+//Método PostConstructor----------comienzo-----------------------------------    
     @PostConstruct
-    public void init(){
+    public void init() {
         usuario = new Usuario();
     }
-
+//-----------------------------------fin---------------------------------------
+    
+    
+    
+//Métodos de acceso-------------------comienzo---------------------------------    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -39,24 +41,30 @@ public class IndexController implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+//-----------------------------------fin--------------------------------------
     
+
     
-    public String iniciarSesion(){
+//Método para iniciar la sesión del usuario, el cual obtiene un usuario con los datos ingresados por
+//el formulario--------------------------comienzo-----------------------------
+    public String iniciarSesion() {
         Usuario us;
         String redireccion = null;
-        try{
-            us = EJBUsuario.iniciarSesion(usuario);
-            if(us != null){
-                
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("User", us);
-            redireccion = "paginas/logueado?faces-redirect=true";
-            }else{
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Datos invalidos",""));
-  
+        try {
+            us = EJBUsuario.iniciarSesion(usuario);//recibe el usuario
+            if (us != null) {//pregunta si el usuario no esta vacio, el que trae la consulta.
+                //Mapea la sesión.
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("User", us);
+                //redirecciona al usuario
+                redireccion = "paginas/logueado?faces-redirect=true";
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos invalidos", ""));
             }
-        }catch(Exception e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Aviso","Datos invalidos"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Aviso", "Datos invalidos"));
         }
-        return redireccion;
+        return redireccion;//retorna la pagina
     }
-}
+//-----------------------------------------------fin---------------------------
+    
+}//fin de clase

@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.participa.controller;
 
 import com.participa.ejb.PerfilusuarioFacadeLocal;
 import com.participa.ejb.UsuarioFacadeLocal;
-import com.participa.model.Perfilusuario;
 import com.participa.model.Usuario;
 import java.io.Serializable;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 
 /**
  *
@@ -25,25 +17,31 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "eliminarUsuariosPerfilesController")
 @SessionScoped
-public class EliminarUsuariosPerfilesController implements Serializable {
+public class EliminarUsuariosPerfilesController implements Serializable {//inicio de clase
 
+//Variables globales----------------------comienzo----------------------------    
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
-
     @EJB
     private PerfilusuarioFacadeLocal perfilUsuarioEJB;
-    
     private Usuario usuario;
+//---------------------------------------------fin----------------------------    
 
-    private List<Usuario> usuarioList;
     
     
-
+//Método Constructor y PostConstructor---------comienzo-----------------------    
     @PostConstruct
     public void init() {
         usuario = new Usuario();
     }
+    
+    public EliminarUsuariosPerfilesController() {
+    }
+//-----------------------------------------------fin---------------------------
+    
 
+    
+//Métodos de acceso-------------------comienzo---------------------------------
     public Usuario getUsuario() {
         return usuario;
     }
@@ -51,54 +49,40 @@ public class EliminarUsuariosPerfilesController implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+//---------------------------------------fin-----------------------------------
+    
+    
 
-    public List<Usuario> getUsuarioList() {
-        usuarioList = this.listarUsuarios();
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    /**
-     * Creates a new instance of modificarUsuariosPerfilesController
-     */
-    public EliminarUsuariosPerfilesController() {
-    }
-
-    public List<Usuario> listarUsuarios() {
-        try {
-            return this.usuarioEJB.findAll();
-        } catch (Exception e) {
-        }
-
-        return null;
-
-    }
-
+//Método para leer los datos de un usuario---------comienzo-------------------    
     public void leerUsuario(Usuario user) {
-
         this.setUsuario(user);
-
     }
-
+//-----------------------------------------fin--------------------------------
+    
+  
+    
+// Método que obtiene el usuario del formulario y lo elimina con los metodos del AbstractFacade.java
+//Se utiliza un procedimiento almacenado que elimina el usuario de la tabla PerfilUsuarios.
+//-------------------------------------comienzo-------------------------------  
     public void eliminarUsuario() {
-
         try {
-            eliminarPerfilUsuario();
+            eliminarPerfilUsuario();//---->Procedimiento almacenado 
             usuarioEJB.remove(usuario);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación éxitosa: ", "Se elimino el usuario "+usuario.getNombreUsuario()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación éxitosa: ", "Se elimino el usuario " + usuario.getNombreUsuario()));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario no se puede eliminar, no esta permitido. ", ""));
         }
-
     }
+//-------------------------------------------fin-------------------------------
     
-   public void eliminarPerfilUsuario(){
-       
-       perfilUsuarioEJB.invocarProcedure(usuario.getIdPersona());
-       
-   }
-
-}
+    
+    
+    
+//Método que elimina al usuario de la tabla perfil usuario con un procedimiento almacenado
+//invocado desde el facade de PerfilUsuario-----------comienzo-----------------
+    public void eliminarPerfilUsuario() {
+        perfilUsuarioEJB.invocarProcedure(usuario.getIdPersona());
+    }
+//---------------------------------------------fin-----------------------------
+    
+}//fin de clase
