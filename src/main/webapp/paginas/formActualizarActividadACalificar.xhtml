@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="content">
+                     <div class="article">
+                    <div class="article_title">
+                        <h2>Actualizar Actividad a Evaluar</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario permite actualizar el detalle de las actividades a evaluar.</p>
+                                    <div> 
+
+                                        <h:form id="frm">
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+
+                                            <p:dataTable class="form_field_1" id="tbl" var="actividadACalificar" value="#{actualizarActividadACalificarController.actividadACalificarList}" emptyMessage="No se encontraron registros"
+                                                           paginator="true" rows="8" paginatorPosition="bottom"
+                                                           paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                                <p:column headerText="Código Act." id="idActividadACalificar" style="width: 20%" filterBy="#{actividadACalificar.idActividadCalificada}" >
+                                                    <h:outputText value="#{actividadACalificar.idActividadCalificada}" />
+                                                </p:column>
+                                                <p:column  headerText="Tipo Act." filterBy="#{actividadACalificar.tipo}" >
+                                                    <h:outputText value="#{actividadACalificar.tipo}" />
+                                                </p:column>
+                                                <!--<p:column  headerText="Detalle Act." filterBy="#{actividadACalificar.detalleactividadacalificar}" >
+                                                    <h:outputText value="#{actividadACalificar.detalleactividadacalificar}" />
+                                                </p:column>-->
+                                                <p:column headerText="Fecha Inicio" style="width: 20%"  >
+                                            <center>
+                                                <h:outputText value="#{actividadACalificar.fechaInicial}" >
+                                                <f:convertDateTime timeStyle="short" ></f:convertDateTime>
+                                            </h:outputText> 
+                                            </center>
+                                        </p:column>
+                                            
+                                        
+                                        <p:column headerText="Fecha Fin" style="width: 20%" >
+                                            <center>
+                                            <h:outputText value="#{actividadACalificar.fechaFinal}">
+                                             <f:convertDateTime timeStyle="short" ></f:convertDateTime>
+                                            </h:outputText> 
+                                            </center>
+                                        </p:column>
+                                                <p:column headerText="Actualizar" style="width: 20%">
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 100%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{actualizarActividadACalificarController.leerActividadACalificar(actividadACalificar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                    </div>
+                                                </p:column>   
+                                            </p:dataTable>
+
+
+                                        </h:form>
+
+                                        <p:dialog header="Datos para actualizar" widgetVar="wdlgDatos" id="dlgDatos" resizable="false" style="width: 20%">
+                                            <h:form>
+
+                                                <p:panelGrid >
+                                                    <div class="form_field_1">
+
+                                                        <p:outputLabel for="txtCodigoAct" value="Código Actividad a Evaluar:"></p:outputLabel>
+                                                        <h:outputText id="txtCodigoAct" value="#{actualizarActividadACalificarController.actividadACalificar.idActividadCalificada}" /> 
+                                                        <br/>
+                                                        <p:outputLabel for="txtAct" value="Descripción de la Actividad:" style="width: 80%"></p:outputLabel>
+                                                        <p:inputTextarea class="form_field_1" requiredMessage="Campo Obligatorio" required="true" id="txtAct" value="#{actualizarActividadACalificarController.actividadACalificar.detalleactividadacalificar}" cols="100" counter="display" maxlength="500" counterTemplate="{0} carácteres restantes." autoResize="false"/>
+                                                        <br/>
+                                                        <p:outputLabel id="display" style="width: 100%"/>
+                                                        
+                                                        <br/>
+                                                        <p:outputLabel for="txtFechaInicial" value="Fecha Inicial:"></p:outputLabel>
+                                                        
+                                                        <p:calendar id="txtFechaInicial"  value="#{actualizarActividadACalificarController.actividadACalificar.fechaInicial}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+                                                
+                                                <p:message for="txtFechaInicial"     showDetail="true" showSummary="false"/>
+                                                        <br/>
+                                                        
+                                                        <p:outputLabel for="txtFechaFinal" value="Fecha Final:"></p:outputLabel>
+                                                        <p:calendar id="txtFechaFinal"  value="#{actualizarActividadACalificarController.actividadACalificar.fechaFinal}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+                                                
+                                                <p:message for="txtFechaFinal"     showDetail="true" showSummary="false"/>
+                                                        <br/>
+                                                        
+                                                        <div class="form_button_box">
+                                                            <p class=""></p> 
+                                                            <p:commandButton value="Actualizar"  style="width: 20%" actionListener="#{actualizarActividadACalificarController.actualizarActividadACalificar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
+
+                                                            </p:commandButton>
+                                                        </div>
+                                                        <div class="form_button_box">
+                                                            <p class=""></p>
+                                                            <p:commandButton value="Cancelar"  style="width: 20%" oncomplete="PF('wdlgDatos').hide();" immediate="true" >
+
+                                                            </p:commandButton>
+                                                        </div>
+                                                    </div>
+                                                </p:panelGrid>
+                                            </h:form>
+                                        </p:dialog>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -35,16 +35,16 @@
                         <form action="" method="post">
                             <div class="form_content">
                                 <h:form class="form_field form_field_1">
-                                    <p:messages id="mensaje" autoUpdate="false" showSummary="true" severity="warn, error" showDetail="true"></p:messages>
+                                    <p:messages id="mensaje" autoUpdate="false" showSummary="true" severity="warn" showDetail="true"></p:messages>
                                     
                     <p:panelGrid class="form_field form_field_1" id="grid" columns="1" >
                         
-                        <p:inputText id="user" placeholder="Usuario" value="#{indexController.usuario.nombreUsuario}"  required="true" requiredMessage="Campo obligatorio"></p:inputText>
+                        <p:inputText tabindex="1" id="user" placeholder="Usuario" value="#{indexController.usuario.nombreUsuario}"  required="true" requiredMessage="Campo obligatorio"></p:inputText>
                         <p:message for="user" display="text"></p:message>
                         
                         
-                        <p:password id="pass" placeholder="contraseña" value="#{indexController.usuario.claveUsuario}" required="true" requiredMessage="Campo obligatorio"></p:password>
-                        <p:message for="pass" display="text"></p:message>
+                        <p:password id="pass" tabindex="2" placeholder="contraseña" value="#{indexController.usuario.claveUsuario}" required="true" requiredMessage="Campo obligatorio"></p:password>
+                        <p:message for="pass"  display="text"></p:message>
                        
                     </p:panelGrid>
                     

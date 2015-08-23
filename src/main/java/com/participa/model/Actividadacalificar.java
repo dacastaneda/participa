@@ -6,10 +6,8 @@
 package com.participa.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +23,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author dacastanedah
+ * @author developer
  */
 @Entity
 @Table(name = "actividadacalificar")
@@ -36,7 +33,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Actividadacalificar.findByTipo", query = "SELECT a FROM Actividadacalificar a WHERE a.tipo = :tipo"),
     @NamedQuery(name = "Actividadacalificar.findByFechaInicial", query = "SELECT a FROM Actividadacalificar a WHERE a.fechaInicial = :fechaInicial"),
     @NamedQuery(name = "Actividadacalificar.findByFechaFinal", query = "SELECT a FROM Actividadacalificar a WHERE a.fechaFinal = :fechaFinal"),
-    @NamedQuery(name = "Actividadacalificar.findByEstadoActividadACalificar", query = "SELECT a FROM Actividadacalificar a WHERE a.estadoActividadACalificar = :estadoActividadACalificar")})
+    @NamedQuery(name = "Actividadacalificar.findByEstadoActividadACalificar", query = "SELECT a FROM Actividadacalificar a WHERE a.estadoActividadACalificar = :estadoActividadACalificar"),
+    @NamedQuery(name = "Actividadacalificar.findByDetalleactividadacalificar", query = "SELECT a FROM Actividadacalificar a WHERE a.detalleactividadacalificar = :detalleactividadacalificar")})
 public class Actividadacalificar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,8 +62,11 @@ public class Actividadacalificar implements Serializable {
     @NotNull
     @Column(name = "estadoActividadACalificar")
     private boolean estadoActividadACalificar;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadCalificada")
-    private Collection<Notas> notasCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
+    @Column(name = "Detalleactividadacalificar")
+    private String detalleactividadacalificar;
     @JoinColumn(name = "idLogro", referencedColumnName = "idLogro")
     @ManyToOne(optional = false)
     private Logro idLogro;
@@ -77,12 +78,13 @@ public class Actividadacalificar implements Serializable {
         this.idActividadCalificada = idActividadCalificada;
     }
 
-    public Actividadacalificar(String idActividadCalificada, String tipo, Date fechaInicial, Date fechaFinal, boolean estadoActividadACalificar) {
+    public Actividadacalificar(String idActividadCalificada, String tipo, Date fechaInicial, Date fechaFinal, boolean estadoActividadACalificar, String detalleactividadacalificar) {
         this.idActividadCalificada = idActividadCalificada;
         this.tipo = tipo;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.estadoActividadACalificar = estadoActividadACalificar;
+        this.detalleactividadacalificar = detalleactividadacalificar;
     }
 
     public String getIdActividadCalificada() {
@@ -125,12 +127,12 @@ public class Actividadacalificar implements Serializable {
         this.estadoActividadACalificar = estadoActividadACalificar;
     }
 
-    public Collection<Notas> getNotasCollection() {
-        return notasCollection;
+    public String getDetalleactividadacalificar() {
+        return detalleactividadacalificar;
     }
 
-    public void setNotasCollection(Collection<Notas> notasCollection) {
-        this.notasCollection = notasCollection;
+    public void setDetalleactividadacalificar(String detalleactividadacalificar) {
+        this.detalleactividadacalificar = detalleactividadacalificar;
     }
 
     public Logro getIdLogro() {

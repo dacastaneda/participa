@@ -43,7 +43,7 @@ public class PeriodolectivoFacade extends AbstractFacade<Periodolectivo> impleme
        List<Periodolectivo> items = em.createNamedQuery("Periodolectivo.findAll", Periodolectivo.class).getResultList();
         periodoLectivo.clear();
         for (Periodolectivo item : items) {
-            SelectItem si = new SelectItem(item.getAno());
+            SelectItem si = new SelectItem(item.getIdPeriodoLectivo());
             periodoLectivo.add(si);
         }
         return periodoLectivo;

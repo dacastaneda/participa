@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Registrar Actividad a calificar
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Registrar Actividad a Calificar</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realiza el ingreso de las actvidades a evaluar durante el del año lectivo.</p>
+                                    <h:form>
+                                        <p:messages  id="mensaje" severity="info, warn" showDetail="false" showSummary="true"></p:messages>
+
+                                        <p:panelGrid id="panel" columns="3" style="width: 100%"> 
+
+                                            <p:column>
+                                                <p:outputLabel for="txtIdActividad" value="Codigo Actividad:"/>
+                                            </p:column>
+                                            <p:column >
+                                                <p:inputText id="txtIdActividad" value="#{registrarActividadACalificarController.actividadacalificar.idActividadCalificada}" title="El cod. debe tener la estructura del siguiente ejemplo: 10DEMC1P1L4TE correspondiente al Grado-Materia-No.Comp-Periodo-No.Logro-Tipo Act.
+                                                             " required="true" requiredMessage="Campo Obligatorio Codigo"/>
+
+                                                <p:tooltip id="txtIdLogro2" showEvent="focus" hideEvent="blur" />
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtIdActividad"     showDetail="true" showSummary="false"/>
+                                            </p:column> 
+                                            <p:column>
+                                                <p:outputLabel for="txtFechaActividad" value="Fecha Inicio Actividad:"></p:outputLabel>
+                                            </p:column>
+                                            <p:column>
+                                                <p:calendar id="txtFechaActividad"  value="#{registrarActividadACalificarController.actividadacalificar.fechaInicial}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+
+
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtFechaActividad"     showDetail="true" showSummary="false"/>
+                                            </p:column> 
+                                            <p:column>
+                                                <p:outputLabel for="txtFechaFinActividad" value="Fecha Fin Actividad:"></p:outputLabel>
+                                            </p:column>
+                                            <p:column>
+                                                <p:calendar id="txtFechaFinActividad"  value="#{registrarActividadACalificarController.actividadacalificar.fechaFinal}" pattern="yyyy/MM/dd" required="true" mask="true" requiredMessage="Campo Obligatorio"/> 
+
+
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtFechaFinActividad"     showDetail="true" showSummary="false"/>
+                                            </p:column> 
+                                            <p:column >
+                                                <p:outputLabel for="txtDetalleActividad" value="Detalle Actividad:"/>
+                                            </p:column>
+                                            <p:column>  
+                                                <p:inputTextarea  value="#{registrarActividadACalificarController.actividadacalificar.detalleactividadacalificar}" class="form_field_1"  maxlength="500" id="txtDetalleActividad" cols="10" counterTemplate="{0} carácteres restantes." required="true" requiredMessage="Campo Obligatorio Detalle Actividad" ></p:inputTextarea>
+                                                <br/>
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtDetalleActividad"     showDetail="true" showSummary="false"/>
+                                            </p:column>
+                                            <p:column >
+                                                <p:outputLabel for="txtTipo" value="Tipo de Actividad:"/>
+                                            </p:column>   
+
+                                            <p:column>
+                                                <h:selectOneMenu  style="width: 100%" id="txtTipo" value="#{registrarActividadACalificarController.actividadacalificar.tipo}" required="true" requiredMessage="Campo Obligatorio">
+                                                    <f:selectItem itemLabel="Seleccione tipo de actividad" itemValue="" noSelectionOption="true"/>
+                                                    <f:selectItem itemLabel="Tarea Escrita" itemValue="TAREA ESCRITA"/>
+                                                    <f:selectItem itemLabel="Taller Clase" itemValue="TALLER CLASE"/>
+                                                    <f:selectItem itemLabel="Evaluacion" itemValue="EVALUACION"/>
+                                                </h:selectOneMenu>
+
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtTipo"     showDetail="true" showSummary="false"/>
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:outputLabel  for="txtCodigoLogro" value="Codigo Logro:"/>
+                                            </p:column>
+                                            <p:column>
+                                                <h:selectOneMenu id="txtCodigoLogro" style="width: 100%"  value="#{registrarActividadACalificarController.logro.idLogro}" required="true" requiredMessage="Campo Obligatorio ">
+                                                    <f:selectItem   itemValue="" itemLabel="Seleccione un logro"/>
+                                                    <f:selectItems    value="#{registrarActividadACalificarController.logroLista}" /> 
+
+                                                </h:selectOneMenu>
+                                                <p:column>
+                                                    <p:message for="txtCodigoLogro"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                            </p:column>
+                                        </p:panelGrid>
+
+                                        <div class="form_button_box">
+                                            <p class=""></p>
+                                            <p:commandButton value="Registrar" action="#{registrarActividadACalificarController.registrarActividad()}"  update="mensaje, panel"  >
+
+                                            </p:commandButton>
+                                        </div>
+                                    </h:form>
+                                    <h:form>
+                                        <div class="form_content">
+                                            <p> Consulta el logro, para la actividad que vas a registrar.</p>
+                                        </div>
+                                        <p:dataTable id="tbl" var="logro" value="#{consultarLogroController.listaLogro}" emptyMessage="No se encontraron registros"
+                                                     paginator="false" rows="5" paginatorPosition="bottom" scrollable="true" scrollHeight="160"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                            <p:column  headerText="Id Logro" style="width: 30%" filterBy="#{logro.idLogro}" filterMatchMode="contains">
+                                                <h:outputText value="#{logro.idLogro}" />
+                                            </p:column>
+                                            <p:column  headerText="Nombre Logro" style="width: 40%" filterBy="#{logro.nombreLogro}" filterMatchMode="contains">
+                                                <h:outputText value="#{logro.nombreLogro}" />
+                                            </p:column>
+                                            
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

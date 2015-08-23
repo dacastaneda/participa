@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/template_1.xhtml">
+
+            <ui:define name="title">
+                Consultar Periodo lectivo
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="article">
+                    <div class="article_title">
+                        <h2>Consultar Periodo lectivo</h2>
+                    </div>
+                    <div class="article_content" >
+                        <div class="form">
+                            <form action="" method="get">
+                                <div class="form_content" >
+                                    <p>En el siguiente formulario se realizan consultas de los periodos lectivos.</p>
+                                    <h:form>
+                                        <p:messages autoUpdate="true" id="mensaje" showDetail="true" showSummary="false"></p:messages>
+                                        
+                                        <p:dataTable id="tbl" var="periodo" value="#{consultarPeriodoLectivoController.periodoList}" emptyMessage="No se encontraron registros"
+                                                     paginator="true" rows="5" paginatorPosition="bottom"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                            <p:column  headerText="Id Periodo lectivo" style="width: 30%" filterBy="#{periodo.idPeriodoLectivo}" filterMatchMode="contains">
+                                                <h:outputText value="#{periodo.idPeriodoLectivo}" />
+                                            </p:column>
+                                            <p:column  headerText="Año" style="width: 40%" filterBy="#{periodo.ano}" filterMatchMode="contains">
+                                                <h:outputText value="#{periodo.ano}" />
+                                            </p:column>
+                                             <p:column headerText="Estado" style="width: 20%">
+                                                     <center>
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  disabled="true" style="width: 20%; border-radius: 10em !important ; background: #{consultarPeriodoLectivoController.colorEstado(periodo.estadoPeriodoLectivo)}" value="" actionListener="#{consultarPeriodoLectivoController.cambioEstado(periodo)}"    update="tbl" ></p:commandButton>
+                                                    </div>
+                                                         </center>
+                                                </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

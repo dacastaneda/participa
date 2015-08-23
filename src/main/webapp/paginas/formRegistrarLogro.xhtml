@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-                title
+                Ingresar Logros
             </ui:define>
 
             <ui:define name="nav">
@@ -21,94 +21,92 @@
             <ui:define name="content">
                 <div class="article">
                     <div class="article_title">
-                        <h2>Ingresar Logro</h2>
+                        <h2>Ingresar Logros</h2>
                     </div>
                     <div class="article_content" >
                         <div class="form">
                             <form action="" method="get">
                                 <div class="form_content" >
-                                    <p>En el siguiente formulario se realiza el ingreso de logros del año lectivo.</p>
+                                    <p>En el siguiente formulario se realiza el ingreso de los logros.</p>
                                     <h:form>
-                                        <p:messages autoUpdate="true" id="mensaje" showDetail="true" showSummary="false"></p:messages>
+                                        <p:messages  id="mensaje" severity="info, warn" showDetail="false" showSummary="true"></p:messages>
+                                       
+                                        <p:panelGrid id="panel" columns="3" style="width: 100%"> 
+                                            
+                                             <p:column>
+                                                <p:outputLabel for="txtIdLogro" value="Codigo Logro:"/>
+                                            </p:column>
+                                            <p:column  width="100%">
+                                                <p:inputText  id="txtIdLogro" value="#{registrarLogroController.logro.idLogro}" title="El cod. debe tener la estructura del siguiente ejemplo: 10DEMC1P1L4 correspondiente al Grado-Materia-No.Comp-Periodo-No.Logro"  required="true" requiredMessage="Campo Obligatorio Codigo"/>
 
+                                                <p:tooltip id="txtIdLogro2" showEvent="focus" hideEvent="blur" />
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtIdLogro"     showDetail="true" showSummary="false"/>
+                                                </p:column> 
+                                            <p:column >
+                                                <p:outputLabel for="txtDetalleLogro" value="Detalle Logro:"/>
+                                            </p:column>
+                                            <p:column >  
+                                                <p:inputTextarea  value="#{registrarLogroController.logro.nombreLogro}" class="form_field_1" maxlength="500" id="txtDetalleLogro" cols="10" counterTemplate="{0} carácteres restantes." required="true" requiredMessage="Campo Obligatorio Detalle Logro" ></p:inputTextarea>
+                                                <br/>
 
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtDetalleLogro"     showDetail="true" showSummary="false"/>
+                                                </p:column> 
+                                            <p:column>
+                                                <p:outputLabel for="txtPeriodo" value="Periodo:"/>
+                                            </p:column>
+                                            <p:column>
+                                              <!--  <p:inputText  id="txtPeriodo" value="#{registrarLogroController.periodocomponente.idPeriodoCalificable}" title="El cod. debe tener la estructura del siguiente ejemplo: 10DEMC1 correspondiente al Grado-Materia-No.Comp"  required="true" requiredMessage="Campo Obligatorio"/> -->
+                                                <h:selectOneMenu id="txtPeriodo" style="width: 100%" value="#{registrarLogroController.periodocomponente.idPeriodoCalificable}" required="true" requiredMessage="Campo Obligatorio Periodo">
+                                                    <f:selectItem   itemValue="" itemLabel="Seleccione un periodo"/>
+                                                    <f:selectItems   value="#{registrarLogroController.periodocalificableList}" />
 
+                                                </h:selectOneMenu>	
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtPeriodo"     showDetail="true" showSummary="false"/>
+                                                </p:column> 
+                                            <p:column>
+                                                <p:outputLabel for="txtComponente" value="Codigo Componente:"/>
+                                            </p:column>
+                                            <p:column>
+                                              <!--   <p:inputText  id="txtComponente" value="#{registrarLogroController.componente.idComponente}" title="El cod. debe tener la estructura del siguiente ejemplo: 10DEMC1 correspondiente al Grado-Materia-No.Comp"  required="true" requiredMessage="Campo Obligatorio"/>-->
+                                                <h:selectOneMenu id="txtComponente" style="width: 100%" value="#{registrarLogroController.componente.idComponente}" required="true" requiredMessage="Campo Obligatorio Periodo"   >
+                                                    <f:selectItem   itemValue="" itemLabel="Seleccione un componente"/>
+                                                    <f:selectItems   value="#{registrarLogroController.componenteList}" /> 
 
+                                                </h:selectOneMenu>
+                                            </p:column>
+                                            <p:column>
+                                                <p:message for="txtComponente"     showDetail="true" showSummary="false"/>
+                                                </p:column> 
+                                           
+                                            </p:panelGrid>
+                                        <div class="form_button_box">
+                                            <p class=""></p>
+                                            <p:commandButton value="Registrar"  action="#{registrarLogroController.registrarLogro()}" update="mensaje, panel"  >
 
-                                        <div class="form_field form_field_2" >		
-                                            <label for="slctGrado"><h3>Grado<sup class=""></sup></h3></label>	
-                                            <h:selectOneMenu value="#{registrarLogroController.gradoV}">
-                                                <f:selectItem   itemValue="" itemLabel="Seleccione un grado"/>
-                                                <f:selectItems  value="#{registrarLogroController.gradoList}" />
-
-                                            </h:selectOneMenu>	
-                                        </div>
-
-                                        <div class="form_field form_field_2" >		
-                                            <label for="slctAsignatura"><h3>Asignatura<sup class=""></sup></h3></label>	
-                                            <h:selectOneMenu value="#{registrarLogroController.asignaturaV}">
-                                                <f:selectItem   itemValue="" itemLabel="Seleccione una asignatura"/>
-                                                <f:selectItems   value="#{registrarLogroController.asignaturaList}"/>
-
-                                            </h:selectOneMenu>	
-                                        </div>	
-
-                                        <div class="form_field form_field_3" >		
-                                            <label for="slctComponente"><h3>Componente<sup class=""></sup></h3></label>	
-                                            <h:selectOneMenu value="#{registrarLogroController.componenteV}" >
-                                            <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione no. Componente" />
-                                            <f:selectItem  itemValue="C1"  itemLabel="1"/>
-                                            <f:selectItem  itemValue="C2"  itemLabel="2"/>
-                                            <f:selectItem  itemValue="C3"  itemLabel="3"/>
-                                            <f:selectItem  itemValue="C4"  itemLabel="4"/>
-                                            <f:selectItem  itemValue="C5"  itemLabel="5"/>
-                                            <f:selectItem  itemValue="C6"  itemLabel="6"/>
-                                            <f:selectItem  itemValue="C7"  itemLabel="7"/>
-                                            <f:selectItem  itemValue="C8"  itemLabel="8"/>
-                                            <f:selectItem  itemValue="C9"  itemLabel="9"/>
-                                            <f:selectItem  itemValue="C10"  itemLabel="10"/>
-                                            <f:selectItem  itemValue="C11"  itemLabel="11"/>
-                                            <f:selectItem  itemValue="C12"  itemLabel="12"/>
-
-                                            </h:selectOneMenu>	
-                                        </div>
-                                        
-                                         
-
-                                        <div class="form_field form_field_3" >		
-                                            <label for="slctPeriodo"><h3>Periodo<sup class=""></sup></h3></label>	
-                                            <h:selectOneMenu  value="#{registrarLogroController.periodoComponenteV}">
-                                                <f:selectItem   itemValue="" itemLabel="Seleccione un periodo"/>
-                                                <f:selectItems   value="#{registrarLogroController.periodocalificableList}"/>
-
-                                            </h:selectOneMenu>	
-                                        </div>
-                                        
-                                        <div class="form_field form_field_4" >		
-                                            <label for="slctLogro"><h3>Logro<sup class=""></sup></h3></label>	
-                                            <h:selectOneMenu value="#{registrarLogroController.logroV}" >
-                                            <f:selectItem  noSelectionOption="true"  itemValue="" itemLabel="Seleccione no. Logro" />
-                                            <f:selectItem  itemValue="L1"  itemLabel="Logro 1"/>
-                                            <f:selectItem  itemValue="L2"  itemLabel="Logro 2"/>
-                                            <f:selectItem  itemValue="L3"  itemLabel="Logro 3"/>
-                                            <f:selectItem  itemValue="L4"  itemLabel="Logro 4"/>
-                                            <f:selectItem  itemValue="L5"  itemLabel="Logro 5"/>
-                                            </h:selectOneMenu>	
-                                        </div>
-                                        <br/> 
-
-                                        <p:outputLabel for="txtNombreLogro" value="Descripcion logro:" style="width: 100%"></p:outputLabel>
-                                        <p:inputTextarea  cols="100"  counterTemplate="{0} caracteres restantes." counter="txtNombreLogro" maxlength="500" autoResize="false" />
-                                        <p:outputLabel id="txtNombreLogro" value="Campos permitidos 500" ></p:outputLabel>
-
-                                         <br/>
-                                    <div class="form_button_box">
-                                        <p class=""></p>
-                                        <p:commandButton value="Ingresar"   >
-                                                
                                             </p:commandButton>
-                                    </div>
-
+                                        </div>
+                                    </h:form>
+                                    <div class="form_content">
+                                            <p> Consulta el componente, para el logro que vas a registrar.</p>
+                                        </div>
+                                    <h:form>
+                                        <p:dataTable  id="tbl" var="componente" value="#{registrarLogroController.componenteLista}" emptyMessage="No se encontraron registros"
+                                                     paginator="false" rows="5" paginatorPosition="bottom" scrollable="true" scrollHeight="160"
+                                                     paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                                            <p:column  headerText="Id Componente" style="width: 30%" filterBy="#{componente.idComponente}" filterMatchMode="contains">
+                                                <h:outputText value="#{componente.idComponente}" />
+                                            </p:column>
+                                            <p:column  headerText="Pregunta problematizadora" style="width: 40%" filterBy="#{componente.preguntaProblematizadora}" filterMatchMode="contains">
+                                                <h:outputText value="#{componente.preguntaProblematizadora}" />
+                                            </p:column>
+                                            
+                                        </p:dataTable>
                                     </h:form>
                                 </div>
                             </form>

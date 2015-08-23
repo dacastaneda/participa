@@ -10,7 +10,7 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-                Registrar Grado
+                Registrar Periodo calificable
             </ui:define>
 
             <ui:define name="nav">
@@ -20,14 +20,14 @@
             <ui:define name="content">
                <div class="article">
                     <div class="article_title">
-                        <h2>Registrar Grados</h2>
+                        <h2>Registrar periodo calificable</h2>
                     </div>
                     <div class="article_content" >
                         <div class="form">
 
                             <form action="" method="get">
                                 <div class="form_content" >
-                                    <p>En el siguiente formulario se realiza el registro de los grados.</p>
+                                    <p>En el siguiente formulario se realiza el registro del periodo calificable.</p>
                                     <div> 
 
                                         <h:form>
@@ -36,28 +36,37 @@
                                             
                                             <p:panelGrid id="panel" columns="3" style="width: 100%">
                                             <p:column>
-                                                <p:outputLabel for="txtIdGrado" value="Id Grado:"></p:outputLabel>
+                                                <p:outputLabel for="txtIdPeriodoCalificable" value="Id Periodo Calificable:"></p:outputLabel>
                                                 </p:column>
                                                 <p:column>
-                                                    <p:inputText id="txtIdGrado"  value="#{registrarGradosController.grado.idGrado}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                    <p:inputText id="txtIdPeriodoCalificable"  value="#{registrarPeriodoCalificableController.periodoCalificable.idPeriodoCalificable}" required="true"  requiredMessage="Campo Obligatorio"/> 
                                                 </p:column>
                                                 <p:column>
-                                                <p:message for="txtIdGrado"     showDetail="true" showSummary="false"/>
+                                                    <p:message for="txtIdPeriodoCalificable"   showDetail="true" showSummary="false"/>
                                                 </p:column>
                                                 <p:column>
-                                                <p:outputLabel for="txtNombreGrado" value="Nombre grado:"></p:outputLabel>
+                                                <p:outputLabel for="txtNombre" value="Nombre Periodo:"></p:outputLabel>
                                                 </p:column>
                                                 <p:column>
-                                                    <p:inputText id="txtNombreGrado"  value="#{registrarGradosController.grado.nombreGrado}" /> 
+                                                    <p:inputText id="txtNombre"  value="#{registrarPeriodoCalificableController.periodoCalificable.nombrePeriodoCalificable}" /> 
                                                 </p:column>
                                                 <p:column>
-                                                <p:message for="txtNombreGrado"     showDetail="true" showSummary="false"/>
+                                                <p:message for="txtNombre"     showDetail="true" showSummary="false"/>
+                                                </p:column>
+                                                <p:column>
+                                                <p:outputLabel for="txtPeriodoLectivo" value="Periodo lectivo:"></p:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:inputText id="txtPeriodoLectivo"  value="#{registrarPeriodoCalificableController.periodoLectivo.idPeriodoLectivo}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                </p:column>
+                                                <p:column>
+                                                <p:message for="txtPeriodoLectivo"     showDetail="true" showSummary="false"/>
                                                 </p:column>
                                                 <p:column>
                                                 <p:outputLabel for="txtEstado" value="Estado:"></p:outputLabel>
                                                 </p:column>
                                                 <p:column>
-                                                    <p:inputText id="txtEstado"  value="#{registrarGradosController.grado.estadoGrado}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                    <p:inputText id="txtEstado"  value="#{registrarPeriodoCalificableController.periodoCalificable.estadoPeriodoCalificable}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                 </p:column>
                                                 <p:column>
                                                 <p:message for="txtEstado"     showDetail="true" showSummary="false"/>
@@ -66,7 +75,7 @@
                                             <br/>
                                     <div class="form_button_box">
                                         <p class=""></p>
-                                        <p:commandButton value="Registrar" update="panel" action="#{registrarGradosController.registrarGrados()}">
+                                        <p:commandButton value="Registrar" update="panel" action="#{registrarPeriodoCalificableController.registrarPeriodoCalificable()}">
                                                 
                                             </p:commandButton>
                                     </div>

@@ -5,7 +5,9 @@
  */
 package com.participa.controller;
 
+import com.participa.ejb.PeriodocalificableFacadeLocal;
 import com.participa.ejb.PeriodolectivoFacadeLocal;
+import com.participa.model.Periodocalificable;
 import com.participa.model.Periodolectivo;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -19,13 +21,16 @@ import javax.faces.view.ViewScoped;
  *
  * @author dacastanedah
  */
-@Named(value = "registrarPeriodoLectivoController")
+@Named(value = "registrarPeriodoCalificableController")
 @ViewScoped
-public class RegistrarPeriodoLectivoController implements Serializable{
+public class RegistrarPeriodoCalificableController implements Serializable{
 
     @EJB
-    private PeriodolectivoFacadeLocal periodoLectivoEJB;
+    private PeriodocalificableFacadeLocal periodoCalificableEJB;
+    
     private Periodolectivo periodoLectivo;
+    
+    private Periodocalificable periodoCalificable;
 
     public Periodolectivo getPeriodoLectivo() {
         return periodoLectivo;
@@ -34,24 +39,37 @@ public class RegistrarPeriodoLectivoController implements Serializable{
     public void setPeriodoLectivo(Periodolectivo periodoLectivo) {
         this.periodoLectivo = periodoLectivo;
     }
+    
+
+    public Periodocalificable getPeriodoCalificable() {
+        return periodoCalificable;
+    }
+
+    public void setPeriodoCalificable(Periodocalificable periodoCalificable) {
+        this.periodoCalificable = periodoCalificable;
+    }
+
+    
 
     
 
     @PostConstruct
     public void init(){
+        periodoCalificable = new Periodocalificable();
         periodoLectivo = new Periodolectivo();
     }
     
     /**
      * Creates a new instance of RegistrarPeriodoLectivoController
      */
-    public RegistrarPeriodoLectivoController() {
+    public RegistrarPeriodoCalificableController() {
     }
     
-    public void registrarPeriodoLectivo(){
+    public void registrarPeriodoCalificable(){
         try {
-            periodoLectivoEJB.create(periodoLectivo);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Periodo lectivo registrado con éxito", ""));
+            periodoCalificable.setIdPeriodoLectivo(periodoLectivo);
+            periodoCalificableEJB.create(periodoCalificable);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Periodo calificable registrado con éxito", ""));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Operación sin éxito, id periodo ya existe", ""));
 

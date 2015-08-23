@@ -8,6 +8,7 @@ package com.participa.ejb;
 import com.participa.model.Logro;
 import java.util.List;
 import javax.ejb.Local;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -30,6 +31,7 @@ public interface LogroFacadeLocal {
 
     int count();
     
+    List<SelectItem> listarLogro();
    
     
 }

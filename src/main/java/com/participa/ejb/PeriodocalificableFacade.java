@@ -49,7 +49,7 @@ public class PeriodocalificableFacade extends AbstractFacade<Periodocalificable>
                 .getResultList(); 
        periodoCalificable.clear();
         for (Periodocalificable item : items) {
-            SelectItem si = new SelectItem(item.getNombrePeriodoCalificable());
+            SelectItem si = new SelectItem(item.getIdPeriodoCalificable());
             periodoCalificable.add(si);
         }
         return periodoCalificable;

@@ -6,8 +6,10 @@
 package com.participa.ejb;
 
 import com.participa.model.Logro;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -30,5 +32,16 @@ public class LogroFacade extends AbstractFacade<Logro> implements LogroFacadeLoc
         super(Logro.class);
     }
     
-    
+    @Override
+    public List<SelectItem> listarLogro() {
+        List<SelectItem> logros = new ArrayList<>();
+       List<Logro> items = em.createNamedQuery("Logro.findAll", Logro.class)
+                .getResultList(); 
+       logros.clear();
+        for (Logro item : items) {
+            SelectItem si = new SelectItem(item.getIdLogro());
+            logros.add(si);
+        }
+        return logros;
+    }
 }

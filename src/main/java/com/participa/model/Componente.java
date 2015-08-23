@@ -136,7 +136,7 @@ public class Componente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.participa.model.Componente[ idComponente=" + idComponente + " ]";
+        return idComponente ;
     }
     
 }

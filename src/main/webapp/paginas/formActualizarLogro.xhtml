@@ -32,16 +32,19 @@
                                     <div> 
 
                                         <h:form id="frm">
-                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="true"></p:messages>
+                                            <p:messages id="mensaje" showDetail="true" showSummary="true"  autoUpdate="false"></p:messages>
 
                                             <p:dataTable   id="tbl" var="logro" value="#{actualizarLogroController.logroList}" emptyMessage="No se encontraron registros"
                                                            paginator="true" rows="8" paginatorPosition="bottom"
                                                            paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
-                                                <p:column headerText="Código Logro" id="idLogro" style="width: 20%" >
+                                                <p:column headerText="Código Logro" id="idLogro" style="width: 20%"  filterBy="#{logro.idLogro}">
                                                     <h:outputText value="#{logro.idLogro}" />
                                                 </p:column>
-                                                <p:column  headerText="Descripcion logro" >
+                                                <p:column  headerText="Descripcion logro"  filterBy="#{logro.nombreLogro}"  filterMatchMode="contains">
                                                     <h:outputText value="#{logro.nombreLogro}" />
+                                                </p:column>
+                                                <p:column  headerText="Id Componente" filterBy="#{logro.idComponente}"  filterMatchMode="contains">
+                                                    <h:outputText value="#{logro.idComponente}"  />
                                                 </p:column>
 
 
@@ -63,13 +66,16 @@
                                                     <div class="form_field_1">
 
                                                         <p:outputLabel for="txtCodigoLogro" value="Código Logro:"></p:outputLabel>
-                                                        <h:outputText id="txtCodigoLogro" value="" /> 
+                                                        <h:outputText id="txtCodigoLogro" value="#{actualizarLogroController.logro.idLogro}" /> 
                                                         <br/>
 
                                                         <p:outputLabel for="txtLogro" value="Descripción del Logro:" style="width: 80%"></p:outputLabel>
                                                         <p:inputTextarea requiredMessage="Campo Obligatorio" required="true" id="txtLogro" value="#{actualizarLogroController.logro.nombreLogro}" cols="100" counter="display" maxlength="500" counterTemplate="{0} carácteres restantes." autoResize="false"/>
                                                         <br/>
                                                         <p:outputLabel id="display" style="width: 20%"/>
+                                                        <br/>
+                                                        <p:outputLabel for="txtIdComponente" value="Id Componente:"></p:outputLabel>
+                                                        <h:outputText id="txtIdComponente" value="#{actualizarLogroController.logro.idComponente}" /> 
                                                         
                                                         <div class="form_button_box">
                                                             <p class=""></p>

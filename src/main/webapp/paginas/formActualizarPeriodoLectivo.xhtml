@@ -10,42 +10,47 @@
         <ui:composition template="./../templates/template_1.xhtml">
 
             <ui:define name="title">
-                Actualizar Grados
+                Actualizar Periodo lectivo
             </ui:define>
 
             <ui:define name="content">
                 <div class="article">
                     <div class="article_title">
-                        <h2>Actualizar Grados</h2>
+                        <h2>Actualizar Periodo Lectivo</h2>
                     </div>
                     <div class="article_content" >
                         <div class="form">
 
                             <form action="" method="get">
                                 <div class="form_content" >
-                                    <p>En el siguiente formulario se permite realizar la actualización de los grados.</p>
+                                    <p>El siguiente formulario realiza la actualización de los Periodos Lectivos..</p>
                                     <div> 
 
                                         <h:form id="frm">
                                             <p:messages id="mensaje" showDetail="false" showSummary="true"  autoUpdate="true"></p:messages>
 
-                                            <p:dataTable id="tbl" var="grado" value="#{consultarGradosController.gradoList}" emptyMessage="No se encontraron registros"
+                                            <p:dataTable id="tbl" var="periodo" value="#{consultarPeriodoLectivoController.periodoList}" emptyMessage="No se encontraron registros"
                                                      paginator="true" rows="5" paginatorPosition="bottom"
                                                      paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
-                                            <p:column  headerText="Id Grado" style="width: 33%" filterBy="#{grado.idGrado}" filterMatchMode="contains">
-                                                <h:outputText value="#{grado.idGrado}" />
+                                            <p:column  headerText="Id Periodo Lectivo" style="width: 20%" filterBy="#{periodo.idPeriodoLectivo}" filterMatchMode="contains">
+                                                <h:outputText value="#{periodo.idPeriodoLectivo}" />
                                             </p:column>
-                                                <p:column  headerText="Nombre Grado" style="width: 32%" filterBy="#{grado.nombreGrado}" filterMatchMode="contains">
-                                                <h:outputText value="#{grado.nombreGrado}" />
+                                            <p:column  headerText="Año" style="width: 20%" filterBy="#{periodo.ano}" filterMatchMode="contains">
+                                                <h:outputText value="#{periodo.ano}" />
                                             </p:column>
-                                            <p:column  headerText="Estado" style="width: 10%">
-                                                <h:outputText value="#{grado.estadoGrado}" />
-                                            </p:column>
-                                                 <p:column headerText="Actualizar" >
+                                            <p:column headerText="Actualizar Estado" style="width: 20%">
                                                      <center>
                                                     <div class="form_button_box" >
                                                         <p class=""></p>
-                                                        <p:commandButton  style="width: 80%" value="Actualizar" icon="ui-icon-pencil" actionListener="#{actualizarGradosController.leerUsuario(grado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
+                                                        <p:commandButton    style="width: 20%; border-radius: 10em !important ; background: #{consultarPeriodoLectivoController.colorEstado(periodo.estadoPeriodoLectivo)}" value="" actionListener="#{consultarPeriodoLectivoController.cambioEstado(periodo)}"    update="tbl" ></p:commandButton>
+                                                    </div>
+                                                         </center>
+                                                </p:column>
+                                                     <p:column headerText="Actualizar Datos" style="width: 20%">
+                                                     <center>
+                                                    <div class="form_button_box" >
+                                                        <p class=""></p>
+                                                        <p:commandButton  style="width: 80%"  value="Actualizar" icon="ui-icon-pencil" actionListener="#{actualizarPeriodoLectivoController.leerPeriodo(periodo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos, tbl" ></p:commandButton>
                                                     </div>
                                                          </center>
                                                 </p:column> 
@@ -60,27 +65,23 @@
                                                 <p:panelGrid columns="1">
 
                                                     <p:column>
-                                                        <p:outputLabel for="txtIdGrado" class="form_field_1" value="Id Grado:" style="width: 100%"></p:outputLabel>
+                                                        <p:outputLabel for="txtIdPeriodoLectivo" class="form_field_1" value="Id Periodo Lectivo:" style="width: 100%"></p:outputLabel>
 
-                                                        <h:inputText id="txtIdGrado" value="#{actualizarGradosController.grado.idGrado}" /> 
+                                                        <p:inputText id="txtIdPeriodoLectivo" value="#{actualizarPeriodoLectivoController.periodolectivo.idPeriodoLectivo}" /> 
                                                     </p:column>
                                                     
                                                     <p:column>
-                                                        <p:outputLabel for="txtNombreGrado" value="Nombre Grado:" style="width: 100%"></p:outputLabel>
+                                                        <p:outputLabel for="txtAno" value="Año:" style="width: 100%"></p:outputLabel>
 
-                                                        <p:inputText id="txtNombreGrado"  value="#{actualizarGradosController.grado.nombreGrado}" required="true" requiredMessage="Campo Obligatorio"/> 
+                                                        <p:inputText id="txtAno"  value="#{actualizarPeriodoLectivoController.periodolectivo.ano}" required="true" requiredMessage="Campo Obligatorio"/> 
                                                     </p:column>
-                                                    <p:column>
-                                                        <p:outputLabel for="txtEstado" value="Estado:" style="width: 100%"></p:outputLabel>
-
-                                                        <p:inputText id="txtEstado"  value="#{actualizarGradosController.grado.estadoGrado}" /> 
-                                                    </p:column>
+                                                    
                                                     
                                                     <p:column>
                                                         <br/>
                                                         <div class="form_button_box">
                                                             <p class=""></p>
-                                                            <p:commandButton value="Actualizar"  style="width: 75%" actionListener="#{actualizarGradosController.modificarGrado()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
+                                                            <p:commandButton value="Actualizar"   style="width: 75%" actionListener="#{actualizarPeriodoLectivoController.modificarPeriodo()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:tbl">
 
                                                             </p:commandButton>
                                                         </div>

@@ -1,17 +1,19 @@
 package com.participa.controller;
 
-import com.participa.ejb.AsignaturaFacadeLocal;
 import com.participa.ejb.ComponenteFacadeLocal;
-import com.participa.ejb.GradoFacadeLocal;
+import com.participa.ejb.LogroFacadeLocal;
 import com.participa.ejb.PeriodocalificableFacadeLocal;
-import com.participa.model.Asignatura;
 import com.participa.model.Componente;
-import com.participa.model.Grado;
+import com.participa.model.Logro;
 import com.participa.model.Periodocalificable;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
@@ -23,99 +25,64 @@ import javax.inject.Named;
 @SessionScoped
 public class RegistrarLogroController implements Serializable {
 
-    @EJB
-    private GradoFacadeLocal gradoEJB;
-
-    @EJB
-    private AsignaturaFacadeLocal asignaturaEJB;
-
+//Variables globales----------------------comienzo----------------------------    
     @EJB
     private ComponenteFacadeLocal componenteEJB;
-
     @EJB
     private PeriodocalificableFacadeLocal periodocalificableEJB;
-
-    private List<SelectItem> gradoList;
-    private List<SelectItem> asignaturaList;
-    private List<SelectItem> componenteList;
+    @EJB
+    private LogroFacadeLocal logroEJB;
+    private Logro logro;
     private List<SelectItem> periodocalificableList;
-
-    private Grado grado;
-    private Asignatura asignatura;
+    private List<SelectItem> componenteList;
+    private List<Componente> componenteLista;
     private Componente componente;
     private Periodocalificable periodocomponente;
+//-------------------------------------------fin------------------------------
+    
+//Constructor y Postconstructor-------------comienzo--------------------------    
+    public RegistrarLogroController() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        periodocomponente = new Periodocalificable();
+        componente = new Componente();
+        logro = new Logro();
+        
+    }
+//------------------------------------------fin------------------------------    
+   
+//Métodos de acceso---------------------comienzo----------------------------    
 
-    private String gradoV;
-    private String asignaturaV;
-    private String componenteV;
-    private String periodoComponenteV;
-    private String logroV;
-
-    private String prueba;
-
-    public String getPrueba() {
-
-        return prueba;
+    public Logro getLogro() {
+        return logro;
     }
 
-    public void setPrueba(String prueba) {
-        this.prueba = prueba;
+    public void setLogro(Logro logro) {
+        this.logro = logro;
     }
 
-    public String getLogroV() {
-        return logroV;
+    
+    
+    public List<SelectItem> getComponenteList() {
+        componenteList = componenteEJB.listarComponente();
+        return componenteList;
     }
 
-    public void setLogroV(String logroV) {
-        this.logroV = logroV;
+    public void setComponenteList(List<SelectItem> componenteList) {
+        this.componenteList = componenteList;
+    }
+    
+    
+    
+    public List<Componente> getComponenteLista() {
+        componenteLista = componenteEJB.findAll();
+        return componenteLista;
     }
 
-    public String getAsignaturaV() {
-        return asignaturaV;
-    }
-
-    public void setAsignaturaV(String asignaturaV) {
-        this.asignaturaV = asignaturaV;
-    }
-
-    public String getComponenteV() {
-        return componenteV;
-    }
-
-    public void setComponenteV(String componenteV) {
-        this.componenteV = componenteV;
-    }
-
-    public String getPeriodoComponenteV() {
-        return periodoComponenteV;
-    }
-
-    public void setPeriodoComponenteV(String periodoComponenteV) {
-        this.periodoComponenteV = periodoComponenteV;
-    }
-
-    public String getGradoV() {
-        return gradoV;
-    }
-
-    public void setGradoV(String gradoV) {
-        this.gradoV = gradoV;
-    }
-
-    public Grado getGrado() {
-        return grado;
-    }
-
-    public void setGrado(Grado grado) {
-        this.grado = grado;
-    }
-
-    public Asignatura getAsignatura() {
-        return asignatura;
-    }
-
-    public void setAsignatura(Asignatura asignatura) {
-        this.asignatura = asignatura;
+    public void setComponenteLista(List<Componente> componenteLista) {
+        this.componenteLista = componenteLista;
     }
 
     public Componente getComponente() {
@@ -134,42 +101,6 @@ public class RegistrarLogroController implements Serializable {
         this.periodocomponente = periodocomponente;
     }
 
-    /**
-     * Creates a new instance of RegistrarLogroController
-     */
-    public RegistrarLogroController() {
-    }
-
-    public List<SelectItem> getGradoList() {
-
-        this.gradoList = gradoEJB.listarGrado();
-
-        return gradoList;
-    }
-
-    public void setGradoList(List<SelectItem> gradoList) {
-        this.gradoList = gradoList;
-    }
-
-    public List<SelectItem> getAsignaturaList() {
-
-        this.asignaturaList = asignaturaEJB.listarAsignatura();
-
-        return asignaturaList;
-    }
-
-    public void setAsignaturaList(List<SelectItem> asignaturaList) {
-        this.asignaturaList = asignaturaList;
-    }
-
-    public List<SelectItem> getComponenteList() {
-        return componenteList;
-    }
-
-    public void setComponenteList(List<SelectItem> componenteList) {
-        this.componenteList = componenteList;
-    }
-
     public List<SelectItem> getPeriodocalificableList() {
 
         periodocalificableList = periodocalificableEJB.listarPeriodoCalificable();
@@ -180,6 +111,23 @@ public class RegistrarLogroController implements Serializable {
     public void setPeriodocalificableList(List<SelectItem> periodocalificableList) {
         this.periodocalificableList = periodocalificableList;
     }
-
-   
+    
+    
+    public void registrarLogro(){
+        try {
+            logro.setIdComponente(componente);
+            logro.setDPeriodoCalificable(periodocomponente);
+            
+            logroEJB.create(logro);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Logro Registrado", "ok"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "¡El logro ya existe!", ""));
+        }
+    }
+    
+    
+     public void leerComponente(Componente compo) {
+         System.out.println("pase por aqui");
+        this.setComponente(compo);
+    }
 }

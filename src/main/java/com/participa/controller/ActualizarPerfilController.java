@@ -1,7 +1,9 @@
 package com.participa.controller;
 
 import com.participa.ejb.GradoFacadeLocal;
+import com.participa.ejb.PerfilFacadeLocal;
 import com.participa.model.Grado;
+import com.participa.model.Perfil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -14,45 +16,47 @@ import javax.faces.context.FacesContext;
  *
  * @author dacastanedah
  */
-@Named(value = "actualizarGradosController")
+@Named(value = "actualizarPerfilController")
 @SessionScoped
-public class ActualizarGradosController implements Serializable {//Inicio clase
+public class ActualizarPerfilController implements Serializable {//Inicio clase
 
 //Variables globales-------------------comienzo-------------------------------
     @EJB
-    private GradoFacadeLocal gradoEJB; 
-    private Grado grado;
+    private PerfilFacadeLocal perfilEJB; 
+    private Perfil perfil;
     
 //------------------------------------fin-------------------------------------    
     
 //Métodos Constructor y PostConstructor---------------comienzo---------------- 
     @PostConstruct
     public void init(){
-      grado = new Grado();
+      perfil = new Perfil();
     }
-    public ActualizarGradosController() {
+    public ActualizarPerfilController() {
     }
 //----------------------------------fin---------------------------------------    
     
 //Métodos de acceso--------------comienzo-------------------------------------
-     public Grado getGrado() {
-        return grado;
+
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
+     
     
 //-----------------------------------fin--------------------------------------    
 
 // Método que obtiene el grado del formulario y lo modifica con los metodos del AbstractFacade.java
 //--------------------------------------comienzo-------------------------------
-    public void modificarGrado() {
+    public void modificarPerfil() {
         try {
-            gradoEJB.edit(grado);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El grado " + grado.getNombreGrado() + ", se actualizo con éxito", ""));
+            perfilEJB.edit(perfil);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El perfil " + perfil.getNombrePerfil() + ", se actualizo con éxito", ""));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El grado " + grado.getNombreGrado() + ", no se actualizo", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El perfil " + perfil.getNombrePerfil() + ", no se actualizo", ""));
         }
     }
 //----------------------------------------fin----------------------------------   
@@ -60,8 +64,8 @@ public class ActualizarGradosController implements Serializable {//Inicio clase
 //Método que obtiene los datos de un grado desde el formulario para, despues ser 
 //pasado a una variable global del controlador---------------------------------
 //------------------------------------Comienzo---------------------------------    
-    public void leerGrado(Grado grado) {
-        this.setGrado(grado);
+    public void leerPerfil(Perfil perfil) {
+        this.setPerfil(perfil);
     }
 //------------------------------------------fin--------------------------------
       

@@ -118,7 +118,7 @@ public class Periodolectivo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.participa.model.Periodolectivo[ idPeriodoLectivo=" + idPeriodoLectivo + " ]";
+        return idPeriodoLectivo ;
     }
     
 }
